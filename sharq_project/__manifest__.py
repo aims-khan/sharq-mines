@@ -22,7 +22,6 @@
         'views/project_view.xml',
         'views/newproject_view.xml',
         'views/employees_view.xml',
-
     ],
     'assets': {
         'web.assets_backend': [

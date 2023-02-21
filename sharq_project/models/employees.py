@@ -8,6 +8,6 @@ class employees(models.Model):
     _description = 'project.project'
     
     project_id = fields.Many2one("project.project")
-    salary=fields.Integer("Salary")
+    salary = fields.Integer("Salary")
 
 
