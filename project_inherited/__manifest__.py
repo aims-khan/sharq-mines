@@ -20,23 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['web', 'project','hr'],
+    'depends': ['base', 'project'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/project_view.xml',
-        'views/newproject_view.xml',
-        'views/employees_view.xml',
-
     ],
-    'assets': {
-        'web.assets_backend': [
-            'sharq_project/static/src/js/project_kanban.js',
-        ],
-    },
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
