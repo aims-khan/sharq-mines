@@ -19,8 +19,6 @@
 
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
         'views/project_view.xml',
         'views/newproject_view.xml',
         'views/employees_view.xml',
@@ -30,7 +28,4 @@
         'web.assets_backend': [
             'sharq_project/static/src/js/project_kanban.js',
         ],
-    },
-    'demo': [
-    ],
-}
+    },}
