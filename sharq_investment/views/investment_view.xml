@@ -1,0 +1,98 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="investment_list">
+      <field name="name">investment.list</field>
+      <field name="model">investment.investment</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="employee_id"/>
+          <field name="amount"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+    <!-- *************** search ******************* -->
+     <!-- <record model="ir.ui.view" id="costumer_search">
+      <field name="name">costumer search</field>
+      <field name="model">tire.costumer</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="bill"/>
+          <field name="date"/>
+          ******** filter *********
+        </search>
+      </field>
+    </record> -->
+    <!-- ********* form ************ -->
+    <record model="ir.ui.view" id="investment_form">
+      <field name="name">investment form</field>
+      <field name="model">investment.investment</field>
+      <field name="arch" type="xml">
+        <form>
+            <header>
+                <button name="action_draft" string="Draf" type="object" 
+                attrs="{'invisible': [('state', '=', 'draft')]}"/>
+
+                <button name="action_approved" string="Approved" type="object"  
+                attrs="{'invisible': [('state', '=', 'approved')]}"/>
+
+                <field name="state" widget="statusbar" />
+            </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="state" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="employee info">
+                            <group>
+                                <field name="employee_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="investment_action_window">
+      <field name="name">Investment</field>
+      <field name="res_model">investment.investment</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="tire.action_server">
+      <field name="name">tire server</field>
+      <field name="model_id" ref="model_tire_tire"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Investment" id="investment_menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Investment" id="investment_inverstment_menu" parent="investment_menu_root"
+        action="investment_action_window"/>
+
+  </data>
+</odoo>

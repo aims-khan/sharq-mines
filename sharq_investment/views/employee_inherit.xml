@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="view_employee_inherit_form">
+      <field name="name">view.employee.inherit.form</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+
+         <xpath expr="//field[@name='parent_id']" position="after">
+            <field name="is_invistor"/>
+        </xpath>
+        
+      </field>
+    </record>
+  </data>
+</odoo>

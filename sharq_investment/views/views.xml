@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="	view_employee_inherit_form">
+      <field name="name">view.employee.inherit.form</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form" />
+      <field name="arch" type="xml">
+        <xpath expr="" position="">
+          
+        </xpath>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="sharq_investment.action_window">
+      <field name="name">sharq_investment window</field>
+      <field name="res_model">sharq_investment.sharq_investment</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="sharq_investment.action_server">
+      <field name="name">sharq_investment server</field>
+      <field name="model_id" ref="model_sharq_investment_sharq_investment"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="sharq_investment" id="sharq_investment.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="sharq_investment.menu_2" parent="sharq_investment.menu_root"/>
+    <!-- <menuitem name="Menu 2" id="sharq_investment.menu_2" parent="sharq_investment.menu_root"/> -->
+
+    <!-- actions -->
+
+    <menuitem name="List" id="sharq_investment.menu_2_list" parent="sharq_investment.menu_2"
+              action="sharq_investment.action_window"/>
+    <!-- <menuitem name="Server to list" id="sharq_investment" parent="sharq_investment.menu_2"
+              action="sharq_investment.action_server"/> -->
+
+  </data>
+</odoo>
