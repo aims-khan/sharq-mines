@@ -8,8 +8,12 @@
       <field name="inherit_id" ref="hr.view_employee_form"/>
       <field name="arch" type="xml">
 
-         <xpath expr="//field[@name='parent_id']" position="after">
-            <field name="is_invistor"/>
+         <xpath expr="//page[@name='hr_settings']//group[@name='identification_group']" position="after">
+         <group string="Investment">
+            
+            <field name="is_investor"/>
+            
+          </group>
         </xpath>
         
       </field>
