@@ -26,8 +26,8 @@
     'data': [
         'security/ir.model.access.csv',
         # 'views/views.xml',
-        'views/templates.xml',
-        'views/employee_inherit.xml',
+        # 'views/templates.xml',
+        'views/employee_inherit_view.xml',
         'views/investment_view.xml',
         
     ],

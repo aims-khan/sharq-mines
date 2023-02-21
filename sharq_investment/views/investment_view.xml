@@ -33,12 +33,8 @@
       <field name="arch" type="xml">
         <form>
             <header>
-                <button name="action_draft" string="Draf" type="object" 
-                attrs="{'invisible': [('state', '=', 'draft')]}"/>
-
-                <button name="action_approved" string="Approved" type="object"  
-                attrs="{'invisible': [('state', '=', 'approved')]}"/>
-
+                <button name="action_draft" string="Draft" type="object" states="draft"/>
+                <button name="action_approved" string="Approved" type="object" states="approved"/>
                 <field name="state" widget="statusbar" />
             </header>
                 <sheet>
@@ -46,7 +42,6 @@
                         <group>
                             <field name="employee_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                            <field name="state" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
                     <notebook>
@@ -67,23 +62,6 @@
       <field name="res_model">investment.investment</field>
       <field name="view_mode">tree,form</field>
     </record>
-
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="tire.action_server">
-      <field name="name">tire server</field>
-      <field name="model_id" ref="model_tire_tire"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
 
     <!-- Top menu item -->
 

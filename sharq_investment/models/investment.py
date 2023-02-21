@@ -10,10 +10,11 @@ class Investment(models.Model):
 
     amount = fields.Integer("Amount")
     active = fields.Boolean(default=True)
-    state = fields.Selection([('draft','Draft'),('approved','Approved'),],
-        readonly=True,
-        default='draft' 
-    )
+    state = fields.Selection(
+        [('draft', 'Draft'),
+         ('approved', 'Approved')
+        ], 'Status', default='draft', readonly=True,
+        help='Choose whether the investment is still approved or not')
 
     #relational fields
     employee_id=fields.Many2one("hr.employee")
