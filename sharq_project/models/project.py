@@ -9,7 +9,4 @@ class projectbudget(models.Model):
 
     emloyees_ids=fields.One2many("hr.employee","project_id")
 
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+

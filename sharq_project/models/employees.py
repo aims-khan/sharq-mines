@@ -10,7 +10,4 @@ class employees(models.Model):
     project_id = fields.Many2one("project.project")
     salary=fields.Integer("Salary")
 
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+

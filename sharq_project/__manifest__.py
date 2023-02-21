@@ -32,6 +32,5 @@
         ],
     },
     'demo': [
-        'demo/demo.xml',
     ],
 }
