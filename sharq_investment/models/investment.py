@@ -17,9 +17,6 @@ class Investment(models.Model):
         ], 'Status', default='draft', readonly=True,
         help='Choose whether the investment is still approved or not')
 
-    #relational fields
-    # employee_id=fields.Many2one("hr.employee")
-    # line = fields.Many2one("project.project")
     line_ids=fields.One2many("investment.line","investment_id")
 
 
@@ -36,19 +33,8 @@ class InvestmentLine(models.Model):
 
     amount = fields.Integer("Amount")
     date=fields.Date()
-    # state = fields.Selection(
-    #     [('draft', 'Draft'),
-    #      ('approved', 'Approved')
-    #     ], 'Status', default='draft', readonly=True,
-    #     help='Choose whether the investment is still approved or not')
 
     #relational fields
     employee_id=fields.Many2one("hr.employee")
     investment_id=fields.Many2one("investment.investment")
 
-
-    # def action_draft(self):
-    #     self.write({'state':'draft'})
-
-    # def action_approved(self):
-    #     self.write({'state': 'approved'})
