@@ -6,4 +6,3 @@ class EmployeeInherit(models.Model):
     _description = 'sharq_investment.sharq_employee'
 
     is_investor = fields.Boolean("Invistor")
-    
