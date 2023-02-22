@@ -1,7 +1,6 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-
     <record model="ir.ui.view" id="investment_list">
       <field name="name">investment.list</field>
       <field name="model">investment.investment</field>
@@ -14,7 +13,6 @@
         </tree>
       </field>
     </record>
-  
     <!-- ********* form ************ -->
     <record model="ir.ui.view" id="investment_form">
       <field name="name">investment form</field>
@@ -59,15 +57,10 @@
       <field name="res_model">investment.investment</field>
       <field name="view_mode">tree,form</field>
     </record>
-
     <!-- Top menu item -->
-
     <menuitem name="Investment" id="investment_menu_root"/>
-
     <!-- menu categories -->
-
     <menuitem name="Investment" id="investment_inverstment_menu" parent="investment_menu_root"
         action="investment_action_window"/>
-
   </data>
 </odoo>

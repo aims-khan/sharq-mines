@@ -37,4 +37,3 @@ class InvestmentLine(models.Model):
     #relational fields
     employee_id=fields.Many2one("hr.employee")
     investment_id=fields.Many2one("investment.investment")
-
