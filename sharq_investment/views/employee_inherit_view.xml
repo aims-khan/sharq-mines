@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="view_employee_inherit_form">
+      <field name="name">view.employee.inherit.form</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+         <xpath expr="//page[@name='hr_settings']//group[@name='identification_group']" position="after">
+          <group string="Investment">
+            <field name="is_investor"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>
