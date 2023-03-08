@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sharq_expense,sharq.expense,model_sharq_expense,base.group_user,1,1,1,1
+access_sharq_product,sharq.product,model_sharq_product,base.group_user,1,1,1,1
+access_sharq_expense_line,sharq.expense.line,model_sharq_expense_line,base.group_user,1,1,1,1
