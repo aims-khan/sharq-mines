@@ -1,8 +1,6 @@
 <odoo>
   <data>
 
-
-
     <record model="ir.ui.view" id="sharq_product_list_view">
         <field name="name">sharq.product.list</field>
         <field name="model">sharq.product</field>
@@ -37,18 +35,11 @@
       </field>
     </record> 
 
-
-    <!-- actions opening views on models -->
-
     <record model="ir.actions.act_window" id="action_sharq_product">
         <field name="name">Products</field>
         <field name="res_model">sharq.product</field>
         <field name="view_mode">tree,form</field>
     </record> 
-      <!-- <field name="view_ids" eval="[(5, 0, 0),
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('product.product_template_tree_view')}),
-            (0, 0, {'view_mode': 'form', 'view_id': ref('product.product_template_only_form_view')}),
-            (0, 0, {'view_mode': 'kanban', 'view_id': ref('product.product_template_kanban_view')})]"/> -->
 
     <menuitem id="sharq_product_submenu" parent="sharq_expense.sharq_expense_menu_root" action="action_sharq_product"/>
 

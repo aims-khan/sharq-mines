@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError
 
@@ -9,7 +7,6 @@ class sharqExpense(models.Model):
 
     name = fields.Char()
     project_id = fields.Many2one('project.project')
-    # product_id = fields.Many2one('sharq.product')
     line_ids = fields.One2many('sharq.expense.line','expense_id')
     amount = fields.Integer('Amount')
     date = fields.Date()
@@ -32,9 +29,6 @@ class sharqExpense(models.Model):
             raise ValidationError("At least add one expnse")
         self.write({"state":"approved"})
 
-
-    #sum for amount
-
     @api.constrains('line_ids')
     def _total_bill(self):
         total = 0
@@ -47,7 +41,6 @@ class ExpenseLine(models.Model):
     _description = 'sharq.expense.line'
 
     product_id = fields.Many2one('sharq.product')
-    # expense_id = fields.Many2one('sharq.expense' default=lambda self: self.expense_id.id)
     expense_id = fields.Many2one('sharq.expense')
     quantity = fields.Float('Quantity')
     unit_price = fields.Float('Unit Price')

@@ -1,6 +1,5 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
 
     <record model="ir.ui.view" id="sharq_expense_list_view">
       <field name="name">expense list</field>
@@ -53,7 +52,6 @@
             </form>
         </field>
     </record>
-    <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="sharq_expense_action_window">
       <field name="name">Expense</field>
@@ -61,21 +59,10 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-
-
-    <!-- Top menu item -->
-
     <menuitem name="Expense" id="sharq_expense_menu_root"/>
 
-    <!-- menu categories -->
-
     <menuitem name="Expenses" id="sharq_expense_menu" parent="sharq_expense_menu_root"
-    action="sharq_expense_action_window"/>
-
-	<!-- ================================================================================================== -->
-	
-   
-  
+    action="sharq_expense_action_window"/>  
 
   </data>
 </odoo>
