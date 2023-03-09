@@ -31,10 +31,11 @@ class sharqExpense(models.Model):
 
     @api.constrains('line_ids')
     def _total_bill(self):
-        total = 0
-        for line in self.line_ids:
-            total = total + line.total
-        self.amount = total
+        if any(self.line_ids):
+            total = 0
+            for line in self.line_ids:
+                total = total + line.total
+            self.amount = total
 
 class ExpenseLine(models.Model):
     _name = 'sharq.expense.line'

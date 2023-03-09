@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+class Inversor(models.Model):
+    _inherit= "res.partner"
+    _description = 'inversor.inversor.description'
 
+
+    district = fields.Char("District")
+
+    invsetor=fields.Boolean("InvSetor", default=True)
 
 class Investment(models.Model):
     _name = 'investment.investment'
     _description = 'sharq_investment.investment'
     
     name = fields.Char("name")
-    amount = fields.Integer("Amount")
+    amount = fields.Integer("Amount"  ,compute='_sum', store=True)
     description=fields.Text("Description")
     active = fields.Boolean(default=True)
     state = fields.Selection(
@@ -24,16 +31,25 @@ class Investment(models.Model):
         self.write({'state':'approved'})
 
     def action_approved(self):
-        self.write({'state': 'approved'})
+        self.write({'state': 'draft'})
+
+
+    @api.constrains('line_ids')
+    def _total_amount(self):
+            amount = 0
+            for line in self.line_ids:
+                amount = amount + line.amount
+            self.amount = amount
+
 
 class InvestmentLine(models.Model):
     _name = 'investment.line'
     _description = 'sharq_investment.investment.line.description'
-    _rec_name="employee_id"
+    _rec_name="investor_id"
 
     amount = fields.Integer("Amount")
     date=fields.Date()
 
     #relational fields
-    employee_id=fields.Many2one("hr.employee")
+    investor_id=fields.Many2one("res.partner")
     investment_id=fields.Many2one("investment.investment")
