@@ -37,7 +37,7 @@
                     </group>
                     <notebook>
                         <page string="Investment Details">
-                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}"  >
                                 <tree editable="top">
                                     <field name="employee_id" domain="[('is_investor', '=', True)]" />
                                     <field name="amount" />
