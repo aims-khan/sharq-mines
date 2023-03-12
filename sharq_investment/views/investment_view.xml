@@ -13,6 +13,63 @@
         </tree>
       </field>
     </record>
+  <!-- invest view  -->
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="investor_inherit_form">
+      <field name="name">invsetor.inherit.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+         <xpath expr="//field[@name='city']" position="before">
+                <field name="district"/>
+         </xpath>
+          <xpath expr="//field[@name='name']" position="after">
+                <field name="invsetor"/>
+         </xpath>
+         <xpath expr="//field[@name='invsetor']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         <xpath expr="//field[@name='street']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+        <xpath expr="//field[@name='street2']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         <xpath expr="//field[@name='zip']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         <!-- <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath> -->
+         <xpath expr="//field[@name='vat']" position="replace"/>
+         <xpath expr="//field[@name='function']" position="replace"/>
+         <xpath expr="//field[@name='website']" position="replace"/>
+         <xpath expr="//field[@name='title']" position="replace"/>
+         <xpath expr="//field[@name='category_id']" position="replace"/>
+         <xpath expr="//page[@name='contact_addresses']" position="replace"/>
+         <xpath expr="//page[@name='internal_notes']" position="replace"/>
+         <!-- <xpath expr="//page[@name='sales_purchases']" position="replace"/> -->
+        <!-- <xpath expr="//field[@name='company_type']" position="replace"/> -->
+
+         <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         <xpath expr="//field[@name='city']" position="attributes">
+                <attribute name="placeholder">Province</attribute>
+         </xpath>
+         <xpath expr="//field[@name='district']" position="attributes">
+                <attribute name="placeholder">District</attribute>
+         </xpath>
+      </field>
+    </record>
+ 
     <!-- ********* form ************ -->
     <record model="ir.ui.view" id="investment_form">
       <field name="name">investment form</field>
@@ -27,7 +84,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="name" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
                             <field name="amount" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
@@ -37,9 +94,9 @@
                     </group>
                     <notebook>
                         <page string="Investment Details">
-                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}"  >
+                            <field name="line_ids" options="{'no_open': True}" attrs="{'readonly': [('state', '!=', 'draft')]}">
                                 <tree editable="top">
-                                    <field name="employee_id" domain="[('is_investor', '=', True)]" />
+                                    <field name="investor_id" domain="[('invsetor', '=', True)]" />
                                     <field name="amount" />
                                     <field name="date" />
                                 </tree>
@@ -62,5 +119,7 @@
     <!-- menu categories -->
     <menuitem name="Investment" id="investment_inverstment_menu" parent="investment_menu_root"
         action="investment_action_window"/>
+    <menuitem name="Investor" id="investment_inverstment_menu_2" parent="investment_menu_root"
+        action="base.action_partner_form"/>
   </data>
 </odoo>
