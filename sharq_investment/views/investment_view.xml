@@ -45,9 +45,10 @@
          <xpath expr="//page[@name='sales_purchases']" position="attributes">
                 <attribute name="invisible">1</attribute>
          </xpath>
-         <!-- <xpath expr="//field[@name='company_type']" position="attributes">
-                <attribute name="invisible">1</attribute>
-         </xpath> -->
+         <xpath expr="//field[@name='type']" position="replace">
+                <field name="type" invisible="True"/>
+                <b>Address</b>
+         </xpath>
          <xpath expr="//field[@name='vat']" position="replace"/>
          <xpath expr="//field[@name='function']" position="replace"/>
          <xpath expr="//field[@name='website']" position="replace"/>
@@ -55,8 +56,7 @@
          <xpath expr="//field[@name='category_id']" position="replace"/>
          <xpath expr="//page[@name='contact_addresses']" position="replace"/>
          <xpath expr="//page[@name='internal_notes']" position="replace"/>
-         <!-- <xpath expr="//page[@name='sales_purchases']" position="replace"/> -->
-        <!-- <xpath expr="//field[@name='company_type']" position="replace"/> -->
+        <xpath expr="//field[@name='company_type']" position="replace"/>
 
          <xpath expr="//field[@name='parent_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -68,6 +68,11 @@
                 <attribute name="placeholder">District</attribute>
          </xpath>
       </field>
+    </record>
+    <!-- action inherit -->
+    <record id="base.action_partner_form" model="ir.actions.act_window">
+      <field name="name">Investor</field>
+      <field name="view_mode">tree,form</field>
     </record>
  
     <!-- ********* form ************ -->
@@ -107,6 +112,9 @@
         </form>
       </field>
     </record>
+
+
+    
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="investment_action_window">
@@ -114,6 +122,7 @@
       <field name="res_model">investment.investment</field>
       <field name="view_mode">tree,form</field>
     </record>
+
     <!-- Top menu item -->
     <menuitem name="Investment" id="investment_menu_root"/>
     <!-- menu categories -->
