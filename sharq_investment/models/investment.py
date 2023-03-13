@@ -41,7 +41,6 @@ class Investment(models.Model):
                 amount = amount + line.amount
             self.amount = amount
 
-
 class InvestmentLine(models.Model):
     _name = 'investment.line'
     _description = 'sharq_investment.investment.line.description'

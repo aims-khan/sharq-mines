@@ -6,3 +6,4 @@ class EmployeeInherit(models.Model):
     _description = 'sharq_investment.sharq_employee'
 
     phone =fields.Char("Phone ")
+    
