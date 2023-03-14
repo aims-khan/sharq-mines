@@ -35,10 +35,54 @@
       </field>
     </record> 
 
+     <record id="sharq_product_kanban_view" model="ir.ui.view">
+        <field name="name">sharq.Product.product.kanban</field>
+        <field name="model">sharq.product</field>
+        <field name="arch" type="xml">
+            <kanban sample="1">
+                            <field name="name"/>
+                            <field name="price"/> 
+                            <field name="barcode"/> 
+                             <field name="image" widget="image" class="oe_avatar" options="{'zoom': true, 'preview_image':'image'}"/> 
+                <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_image mr-1">
+                                <img t-att-src="kanban_image('product.template', record.image)" alt="Product" class="o_image_64_contain"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top mb-0">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                            <field name="price"/> 
+                                            <field name="barcode"/> 
+                                        </strong>
+                                    </div>
+                                    <!-- <field name="priority" widget="priority"/> -->
+                                </div>
+                                <!-- <t t-if="record.default_code.value">[<field name="default_code"/>]</t> -->
+                                <!-- <div t-if="record.product_variant_count.value &gt; 1" groups="product.group_product_variant">
+                                    <strong>
+                                        <t t-esc="record.product_variant_count.value"/> Variants
+                                    </strong>
+                                </div>
+                                <div name="product_lst_price" class="mt-1"> -->
+                                    <!-- Price: <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"></field> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_sharq_product">
         <field name="name">Products</field>
         <field name="res_model">sharq.product</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record> 
 
     <menuitem id="sharq_product_submenu" parent="sharq_expense.sharq_expense_menu_root" action="action_sharq_product"/>

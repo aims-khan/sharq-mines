@@ -25,6 +25,7 @@ class Investment(models.Model):
         help='Choose whether the investment is still approved or not')
 
     line_ids=fields.One2many("investment.line","investment_id")
+    project_id = fields.Many2one('project.project')
 
 
     def action_draft(self):

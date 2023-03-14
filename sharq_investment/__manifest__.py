@@ -19,7 +19,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['base','hr'],
+    'depends': ['base','hr', 'project'],
 
     'data': [
         'security/ir.model.access.csv',
