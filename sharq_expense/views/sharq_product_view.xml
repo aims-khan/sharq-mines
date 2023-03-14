@@ -70,7 +70,11 @@
     <record model="ir.actions.act_window" id="action_sharq_product">
         <field name="name">Products</field>
         <field name="res_model">sharq.product</field>
+<<<<<<< HEAD
         <field name="view_mode">kanban,tree,form</field>
+=======
+        <field name="view_mode">tree,form,kanban</field>
+>>>>>>> e8e640ac7992a456d170d90d9fd02fa25d4342ad
     </record> 
 
     <menuitem id="sharq_product_submenu" parent="sharq_expense.sharq_expense_menu_root" action="action_sharq_product"/>

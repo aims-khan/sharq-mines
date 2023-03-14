@@ -11,17 +11,34 @@
         <xpath expr="//field[@name='mobile_phone']" position="after">
                 <field name="phone"/>
          </xpath>
+         <xpath expr="//field[@name='work_email']" position="after">
+                <field name="salary"/>
+         </xpath>
+          
          <xpath expr="//field[@name='work_phone']" position="replace"/>
          <xpath expr="//field[@name='job_title']" position="replace"/>
         <xpath expr="//field[@name='category_ids']" position="replace"/>
         <xpath expr="//field[@name='coach_id']" position="replace"/>
-        <!-- <xpath expr="//page[@name='public']" position="replace"/> -->
+        <!-- <xpath expr="//header[]" position="replace"/> -->
         <xpath expr="//field[@name='parent_id']" position="after">
                 <field name="work_location_id"/>
          </xpath>
          <xpath expr="//page[@name='public']" position="attributes">
                 <attribute name="invisible">1</attribute>
          </xpath>
+         <xpath expr="//page[@name='hr_settings']" position="attributes">
+                <attribute name="sequence">1</attribute>
+         </xpath>
+         <xpath expr="//page[@name='personal_information']" position="attributes">
+                <attribute name="sequence">2</attribute>
+         </xpath>
+         <xpath expr="//field[@name='work_location_id']" position="after">
+                <field name="project_id"/>
+         </xpath>
+           <xpath expr="//header" position="attributes">
+                <attribute name="invisible">1</attribute>
+         </xpath>
+         
        </field>
     </record>
   </data>
