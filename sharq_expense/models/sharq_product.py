@@ -8,7 +8,6 @@ class SharqProduct(models.Model):
 
 
     name = fields.Char('Name', index=True, required=True)
-    price = fields.Float('Price', required=True)
     image = fields.Binary(" ")
-    barcode = fields.Char('Barcode')
+    des = fields.Text("Descripation")
 
