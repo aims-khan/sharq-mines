@@ -2,14 +2,14 @@
   <data>
 
     <record model="ir.ui.view" id="sharq_product_list_view">
-        <field name="name">sharq.product.list</field>
+        <field name="name">sharq.product.list.view</field>
         <field name="model">sharq.product</field>
         <field name="arch" type="xml">
             <tree> 
                 <field name="name"/>
-                <field name="price"/> 
-                <field name="image" widget="image" options="{'size': [150, 150]}" /> 
-                <field name="barcode"/> 
+                <!-- <field name="price"/>  -->
+                <field name="image" widget="image" atl="my" options="{'size': [150, 150]}" /> 
+                <!-- <field name="barcode"/>  -->
             </tree>
         </field>
     </record>
@@ -23,8 +23,8 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="price"/> 
-                            <field name="barcode"/> 
+                            <!-- <field name="barcode"/> 
+                            <field name="price"/>  -->
                         </group>
                         <group>
                             <field name="image" widget="image" class="oe_avatar" options="{'zoom': true, 'preview_image':'image'}"/> 
@@ -42,8 +42,8 @@
             <kanban>
                 <field name="id"/>
                 <field name="name"/>
-                <field name="price"/>
-                <field name="barcode"/>
+                <!-- <field name="price"/>
+                <field name="barcode"/> -->
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
@@ -70,11 +70,7 @@
     <record model="ir.actions.act_window" id="action_sharq_product">
         <field name="name">Products</field>
         <field name="res_model">sharq.product</field>
-<<<<<<< HEAD
-        <field name="view_mode">kanban,tree,form</field>
-=======
         <field name="view_mode">tree,form,kanban</field>
->>>>>>> e8e640ac7992a456d170d90d9fd02fa25d4342ad
     </record> 
 
     <menuitem id="sharq_product_submenu" parent="sharq_expense.sharq_expense_menu_root" action="action_sharq_product"/>

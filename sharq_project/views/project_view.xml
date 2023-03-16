@@ -3,6 +3,89 @@
         <record model="ir.ui.view" id="view_project_inherit_kanban">
             <field name="name">project.project.inherit.kanban</field>
             <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='settings']" position="after">
+                    <page string="Employee">
+                        <field name="employee_ids" readonly="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="salary"/>
+                            <field name="mobile_phone"/>
+                            <field name="department_id"/>
+                        </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//header" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                 <!-- <xpath expr="//div[@name='button_box']" position="replace">
+                    <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        <field name="currency_id" invisible="1"/>
+                        <button class="oe_stat_button" name="%(project.project_milestone_all)d" type="action" icon="fa-check-square-o">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="milestone_count" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Milestones
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" name="%(project.project_update_all_action)d" type="action" groups="project.group_project_manager">
+                            <div class="pl-4">
+                                <field name="last_update_color" invisible="1"/>
+                                <field name="last_update_status" widget="status_with_color" options="{'color_field': 'last_update_color'}"/>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button o_project_not_clickable" disabled="disabled" groups="!project.group_project_manager">
+                            <div class="pl-4">
+                                <field name="last_update_color" invisible="1"/>
+                                <field name="last_update_status" widget="status_with_color" options="{'color_field': 'last_update_color', 'no_quick_edit': 1}"/>
+                            </div>
+          class SaleLine(models.Model):
+
+    _name = 'atlas.sale.line'
+    _description = 'new tire sale line '
+    _rec_name ='product_id'
+
+    quantity = fields.Integer("Quantity")
+    price = fields.Float("Unit Price")
+    total = fields.Float(string='Total', compute='_total_amount', store=True)
+    active = fields.Boolean('Active', default=True)
+    date=fields.Date("Date")
+
+    sale_id=fields.Many2one('atlas.sale')
+    product_id =fields.Many2one("atlas.product")
+    
+    # product_ids=fields.One2many("atlas.product","sale_id")
+
+
+    @api.depends('quantity', 'price')
+    def _total_amount(self):
+
+        for rec in self:
+
+            rec.update({
+
+                'total': rec.quantity*rec.price,
+
+            })              </button>
+                    </div>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_project_inherit_kanban">
+            <field name="name">project.project.inherit.kanban</field>
+            <field name="model">project.project</field>
             <field name="inherit_id" ref="project.view_project_kanban" />
             <field name="arch" type="xml">
                 <xpath expr="/kanban" position="attributes">
@@ -12,3 +95,7 @@
         </record>
     </data>
 </odoo>
+
+
+  
+   
