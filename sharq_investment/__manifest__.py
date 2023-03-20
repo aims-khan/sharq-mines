@@ -25,6 +25,9 @@
         'security/ir.model.access.csv',
         'views/employee_inherit_view.xml',
         'views/investment_view.xml',
+        'reports/report.xml',
+        'reports/investment_monthly_report.xml',
+        'reports/partner_report.xml',
         
     ],
     # only loaded in demonstration mode

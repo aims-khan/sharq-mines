@@ -1,0 +1,12 @@
+<odoo>
+    <template id="partner_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <h1>This is my first report form partner</h1>
+                    <p><span t-esc="o"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
