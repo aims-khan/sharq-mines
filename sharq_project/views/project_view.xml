@@ -17,6 +17,19 @@
                         </field>
                     </page>
                 </xpath>
+                <xpath expr="//page[@name='settings']" position="before">
+                    <page string="Investor Info">
+                        <field name="line_ids" readonly="1">
+                        <tree>
+                            <field name="project_id"/>
+                            <field name="investor_id"/>
+                            <field name="expense_id"/>
+                            <field name="sale_id"/>
+                            <field name="part"/>
+                        </tree>
+                        </field>
+                    </page>
+                </xpath>
                 <xpath expr="//header" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
@@ -26,12 +39,18 @@
                 <xpath expr="//page[@name='settings']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+                <xpath expr="//page[@name='description']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="product"/>
-         </xpath>
+                     <field name="product"/>
+                </xpath>
+                <xpath expr="//field[@name='product']" position="after">
+                     <field name="name"/>
+                </xpath>
             </field>
         </record>
 
