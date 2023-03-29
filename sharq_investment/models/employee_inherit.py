@@ -10,3 +10,16 @@ class EmployeeInherit(models.Model):
 
     project_id=fields.Many2one("project.project")
     
+
+# class InvestmentLine(models.Model):
+#     _name = 'investor.line'
+#     _description = 'sharq_investor.investor.line.description'
+#     _rec_name="investor_id"
+
+#     amount = fields.Integer("Amount")
+#     date=fields.Date()
+
+#     #relational fields
+#     investor_id=fields.Many2one("res.partner")
+#     investment_id=fields.Many2one("investment.investment")
+#     project_id = fields.Many2one('project.project')

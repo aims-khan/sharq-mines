@@ -16,6 +16,7 @@ class Investment(models.Model):
     
     name = fields.Char("name")
     amount = fields.Integer("Amount"  ,compute='_sum', store=True)
+    expenses=fields.Float("Expenses")
     description=fields.Text("Description")
     active = fields.Boolean(default=True)
     state = fields.Selection(

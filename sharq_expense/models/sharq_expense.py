@@ -11,7 +11,16 @@ class sharqExpense(models.Model):
     amount = fields.Integer('Amount')
     date = fields.Date()
     action = fields.Boolean()
+    type=fields.Selection(
+        selection=[
+            ('oli', 'Oli'),
+            ('machiner', 'Minchener'),
+            ('Misc','Motafirqa')
+        ],
+        string="Type",
+        )
     
+
 
     state = fields.Selection(
         selection=[
@@ -46,6 +55,8 @@ class ExpenseLine(models.Model):
     quantity = fields.Float('Quantity')
     unit_price = fields.Float('Unit Price')
     total = fields.Float('Total', compute='_sum', store=True)
+    oilquantity=fields.Float("Oil Quantity")
+    oiltotal=fields.Float('Oil Total', compute='_sum', store=True)
 
 
     @api.depends('quantity', 'unit_price')
@@ -56,6 +67,16 @@ class ExpenseLine(models.Model):
             rec.update({
 
                 'total': rec.quantity*rec.unit_price,
+
+            })
+    @api.depends('oilquantity', 'quantity')
+    def _sum(self):
+
+        for rec in self:
+
+            rec.update({
+
+                'oiltotal': rec.oilquantity*rec.quantity,
 
             })
 

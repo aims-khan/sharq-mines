@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['web', 'project'],
+    'depends': ['web', 'project', 'sharq_investment'],
 
     # always loaded
     'data': [

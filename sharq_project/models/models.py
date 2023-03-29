@@ -8,3 +8,5 @@ class project(models.Model):
     _description = 'project project inherit'
  
     employee_ids=fields.One2many("hr.employee","project_id")
+    product=fields.Char("Mine Product")
+
