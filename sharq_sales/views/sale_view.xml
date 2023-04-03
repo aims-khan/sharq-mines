@@ -37,10 +37,10 @@
                         <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         <field name="total"/>
                     </group>
+                </group>
                     <group>
                         <field name="description" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                     </group>
-                </group>
             </sheet>
         </form>
       </field>
@@ -59,7 +59,7 @@
 
     <!-- Top menu item -->
 
-    <menuitem name="sharq_sales" id="sharq_sales.menu_root"/>
+    <menuitem name="Sales" id="sharq_sales.menu_root"/>
 
     <!-- menu categories -->
 
