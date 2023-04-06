@@ -15,6 +15,7 @@ class project(models.Model):
     total_expence=fields.Float("Total Expence", readonly="1" )
     total_investment=fields.Float("Total Investment", readonly="1" )
     total_sale=fields.Float("Total Sale", readonly="1" )
+    
 
 
 class ProjectLine(models.Model):
@@ -28,4 +29,6 @@ class ProjectLine(models.Model):
     sale_id=fields.Many2one("sharq_sales.sharq_sales")
     part=fields.Many2one("investment.investment")
     profite=fields.Float("Profite")
+
+
 
