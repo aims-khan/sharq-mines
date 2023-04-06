@@ -25,7 +25,7 @@ class Investment(models.Model):
         help='Choose whether the investment is still approved or not')
 
     line_ids=fields.One2many("investment.line","investment_id")
-    project_id = fields.Many2one('project.project')
+    # project_id = fields.Many2one('project.project')
 
     @api.constrains('amount')
     def calculate_project_investment(self):
@@ -46,6 +46,13 @@ class Investment(models.Model):
                 amount = amount + line.amount
             self.amount = amount
 
+
+     
+    project_id = fields.Many2one('project.project', string='Project', required=True)
+    # Add a constraint to ensure that there is only one investment per project
+    _sql_constraints = [
+        ('project_uniq', 'unique(project_id)', 'An investment already exists for this project.'),
+    ]
 class InvestmentLine(models.Model):
     _name = 'investment.line'
     _description = 'sharq_investment.investment.line.description'

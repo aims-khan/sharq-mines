@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import UserError, ValidationError
 
 
 class sharq_sales(models.Model):
@@ -36,12 +37,18 @@ class sharq_sales(models.Model):
                 'total': rec.qunantity*rec.cost,
 
             })
+    @api.constrains('project_id')
+    def _check_investment(self):
+        # project_id = self.project_id
+        investment_ids = self.env['investment.investment'].search([('project_id', '=', self.project_id.id)])
+        if not investment_ids:
+            raise ValidationError(("There are no investments for the selected project. You cannot proceed with the sale."))
     
     @api.constrains('total')
     def calc_project_calculations(self):
         for rec in self:
-            project_id = project_id if project_id else rec.project_id
-            self.project_calculations(project_id) 
+            # project_id = project_id if project_id else rec.project_id
+            self.project_calculations(self.project_id) 
     
 
     def project_calculations(self, project_id=False):
@@ -67,7 +74,13 @@ class sharq_sales(models.Model):
             'total_investment':total_investments,
         })
 
-    # @api.model_create_multi
+
+    
+
+   
+    # @api.model_c
+    # 
+    # reate_multi
     # def create(self, vals):
     #     res = super(sharq_sales, self).create(vals)
         

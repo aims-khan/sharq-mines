@@ -69,7 +69,7 @@ class ExpenseLine(models.Model):
 
                 })
  
-    @api.depends('oilquantity', 'quantity')
+    @api.depends('oil_quantity', 'quantity')
     def _total_oil_expance(self):
 
         for rec in self:
