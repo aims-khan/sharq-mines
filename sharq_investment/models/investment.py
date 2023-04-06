@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-class Inversor(models.Model):
+class Invetsor(models.Model):
     _inherit= "res.partner"
     _description = 'inversor.inversor.description'
 

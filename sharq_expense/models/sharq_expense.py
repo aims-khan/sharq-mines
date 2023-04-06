@@ -8,7 +8,7 @@ class sharqExpense(models.Model):
     name = fields.Char()
     project_id = fields.Many2one('project.project')
     line_ids = fields.One2many('sharq.expense.line','expense_id')
-    amount = fields.Integer('Amount')
+    amount = fields.Integer('Amount', compute="_total_bill", store=True)
     date = fields.Date()
     action = fields.Boolean()
     type=fields.Selection(
@@ -56,7 +56,7 @@ class ExpenseLine(models.Model):
     unit_price = fields.Float('Unit Price')
     total = fields.Float('Total', compute='_sum', store=True)
     oilquantity=fields.Float("Oil Quantity")
-    oiltotal=fields.Float('Oil Total', compute='_sum', store=True)
+    oiltotal=fields.Float('Oil Total', compute='_sumOil', store=True)
 
 
     @api.depends('quantity', 'unit_price')
@@ -70,7 +70,7 @@ class ExpenseLine(models.Model):
 
             })
     @api.depends('oilquantity', 'quantity')
-    def _sum(self):
+    def _sumOil(self):
 
         for rec in self:
 
