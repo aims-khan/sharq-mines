@@ -11,6 +11,10 @@ class sharqExpense(models.Model):
     amount = fields.Integer('Amount', compute="_total_bill", store=True)
     date = fields.Date()
     action = fields.Boolean()
+
+
+
+    
     
     @api.constrains('amount')
     def calculate_project_expense(self):
