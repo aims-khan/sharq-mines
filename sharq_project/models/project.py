@@ -21,7 +21,6 @@ class ProjectLine(models.Model):
     _name = 'project.line'
     _description = 'sharq_project.project.line.description'
 
-
     #relational fields
     project_id=fields.Many2one("project.project")
     investor_id=fields.Many2one("res.partner")
