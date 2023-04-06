@@ -31,13 +31,13 @@
                     </page>
                 </xpath>
                  <xpath expr="//field[@name='user_id']" position="after">
-                    <field name="totalInvestment" />
+                    <field name="total_investment" />
                 </xpath>
-                 <xpath expr="//field[@name='totalInvestment']" position="after">
-                    <field name="totalExpence" />
+                 <xpath expr="//field[@name='total_investment']" position="after">
+                    <field name="total_expence" />
                 </xpath>
-                 <xpath expr="//field[@name='totalExpence']" position="after">
-                    <field name="totalSale" />
+                 <xpath expr="//field[@name='total_expence']" position="after">
+                    <field name="total_sale" />
                 </xpath>
                 
                 <xpath expr="//header" position="attributes">
