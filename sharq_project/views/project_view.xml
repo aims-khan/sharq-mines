@@ -17,6 +17,29 @@
                         </field>
                     </page>
                 </xpath>
+                <xpath expr="//page[@name='settings']" position="before">
+                    <page string="Investor Info">
+                        <field name="line_ids" readonly="1">
+                        <tree >
+                            <field name="investor_id"/>
+                            <field name="expense_id"/>
+                            <field name="sale_id"/>
+                            <field name="part"/>
+                            <field name="profite"/>
+                        </tree>
+                        </field>
+                    </page>
+                </xpath>
+                 <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="total_investment" />
+                </xpath>
+                 <xpath expr="//field[@name='total_investment']" position="after">
+                    <field name="total_expence" />
+                </xpath>
+                 <xpath expr="//field[@name='total_expence']" position="after">
+                    <field name="total_sale" />
+                </xpath>
+                
                 <xpath expr="//header" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
@@ -26,12 +49,22 @@
                 <xpath expr="//page[@name='settings']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+                <xpath expr="//page[@name='description']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
                 <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="product"/>
-         </xpath>
+                     <field name="product"/>
+                </xpath>
+                <xpath expr="//field[@name='product']" position="after">
+                     <field name="user_id"/>
+                </xpath>
             </field>
         </record>
 

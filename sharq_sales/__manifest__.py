@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "project",
+    'name': "sharq_sales",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,18 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['web', 'project', 'sharq_investment'],
+    'depends': ['base','project'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/project_view.xml',
+        'views/sale_view.xml',
+        'views/templates.xml',
     ],
-    'assets': {
-        'web.assets_backend': [
-            'sharq_project/static/src/js/project_kanban.js',
-        ],
-    },
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

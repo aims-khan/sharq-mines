@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-class Inversor(models.Model):
+class Invetsor(models.Model):
     _inherit= "res.partner"
     _description = 'inversor.inversor.description'
 
@@ -16,7 +16,6 @@ class Investment(models.Model):
     
     name = fields.Char("name")
     amount = fields.Integer("Amount"  ,compute='_sum', store=True)
-    expenses=fields.Float("Expenses")
     description=fields.Text("Description")
     active = fields.Boolean(default=True)
     state = fields.Selection(
@@ -27,6 +26,10 @@ class Investment(models.Model):
 
     line_ids=fields.One2many("investment.line","investment_id")
     project_id = fields.Many2one('project.project')
+
+    @api.constrains('amount')
+    def calculate_project_investment(self):
+        self.env['sharq_sales.sharq_sales'].project_calculations(self.project_id)
 
 
     def action_draft(self):

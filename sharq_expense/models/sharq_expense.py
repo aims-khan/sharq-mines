@@ -8,19 +8,17 @@ class sharqExpense(models.Model):
     name = fields.Char()
     project_id = fields.Many2one('project.project')
     line_ids = fields.One2many('sharq.expense.line','expense_id')
-    amount = fields.Integer('Amount')
+    amount = fields.Integer('Amount', compute="_total_bill", store=True)
     date = fields.Date()
     action = fields.Boolean()
-    type=fields.Selection(
-        selection=[
-            ('oli', 'Oli'),
-            ('machiner', 'Minchener'),
-            ('Misc','Motafirqa')
-        ],
-        string="Type",
-        )
-    
 
+
+
+    
+    
+    @api.constrains('amount')
+    def calculate_project_expense(self):
+        self.env['sharq_sales.sharq_sales'].project_calculations(self.project_id)
 
     state = fields.Selection(
         selection=[
