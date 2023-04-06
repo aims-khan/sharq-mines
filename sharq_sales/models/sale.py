@@ -56,7 +56,7 @@ class sharq_sales(models.Model):
             for invest_rec in investment_ids:
                 total_investments += invest_rec.amount
             
-
+            
             rec.project_id.update({
                 'totalSale':total_sales,
                 'totalExpence':total_expenses,

@@ -12,19 +12,14 @@ class project(models.Model):
     employee_ids=fields.One2many("hr.employee","project_id")
     line_ids=fields.One2many("project.line","project_id")
 
-    totalExpence=fields.Float("Total Expence"  )
-    totalInvestment=fields.Float("Total Investment"  )
-    totalSale=fields.Float("Total Sale"  )
-    
-    
-
-
+    total_expence=fields.Float("Total Expence", readonly="1" )
+    total_investment=fields.Float("Total Investment", readonly="1" )
+    total_sale=fields.Float("Total Sale", readonly="1" )
 
 
 class ProjectLine(models.Model):
     _name = 'project.line'
     _description = 'sharq_project.project.line.description'
-
 
     #relational fields
     project_id=fields.Many2one("project.project")
