@@ -36,23 +36,39 @@ class sharq_sales(models.Model):
                 'total': rec.qunantity*rec.cost,
 
             })
+    
+    @api.constrains('total')
+    def _calc_project_calculations(self):
+        for rec in self:
+            domain = [('project_id', '=', rec.project_id.id)]
+            
+            total_sales = 0
+            total_expenses = 0
+            total_investments = 0
+            sale_ids = self.search(domain)
+            expense_ids = self.env['sharq.expense'].search(domain)
+            investment_ids = self.env['investment.investment'].search(domain)
+            for sale_rec in sale_ids:
+                # print(">>>>>>>>>>>>>", sale_rec.qunantity)
+                total_sales += (sale_rec.qunantity * sale_rec.cost)
+            for expense_rec in expense_ids:
+                total_expenses += expense_rec.amount
+            for invest_rec in investment_ids:
+                total_investments += invest_rec.amount
+            
 
-    @api.model_create_multi
-    def create(self, vals):
-        res = super(sharq_sales, self).create(vals)
-        for rec in vals:
-            sale_data_dict = {
-                'quantity': 0,
-                'cost': 0,
-                'project_id': rec.get('project_id')
-            }
-            current_sale_ids = self.search([('project_id', '=', rec.get('project_id'))])
-            for current in current_sale_ids:
-                print(">>>>>>>>>>>>>", current.qunantity)
-                sale_data_dict['quantity'] += current.qunantity
-            print("current_sale_idsssssssssssssssssssssssssssssssssssssss", current_sale_ids, self)
-        return res
+            rec.project_id.update({
+                'totalSale':total_sales,
+                'totalExpence':total_expenses,
+                'totalInvestment':total_investments,
+            })
 
-    def write(seld, vals):
-        print("\n::::::::::::::::::::::write function called")
+    # @api.model_create_multi
+    # def create(self, vals):
+    #     res = super(sharq_sales, self).create(vals)
+        
+    #     return res
+
+    # def write(seld, vals):
+    #     print("\n::::::::::::::::::::::write function called")
  
