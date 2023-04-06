@@ -30,7 +30,6 @@
                         <group>
                             <field name="name" attrs="{'readonly': [('state', '=', 'approved')]}" required="1"/>
                             <field name="project_id" required="1" attrs="{'readonly': [('state', '=', 'approved')]}"/>
-                            <field name="type" required="1" attrs="{'readonly': [('state', '=', 'approved')]}"/>
                         </group>
                         <group>
                             <field name="amount" attrs="{'readonly': [('state', '=', 'approved')]}" readonly="1"/>
@@ -47,7 +46,7 @@
                                 <field name="total"/>
                                 <field name="oilquantity" />
                                 <field name="oiltotal"  />
-                                <!-- attrs="{'invisible': [('product_id.type', '=', 'machiner')]}" -->
+                               
                               </tree>
                             </field>
                         </page>

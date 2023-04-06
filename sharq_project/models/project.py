@@ -12,9 +12,9 @@ class project(models.Model):
     employee_ids=fields.One2many("hr.employee","project_id")
     line_ids=fields.One2many("project.line","project_id")
 
-    total_expence=fields.Float("Total Expence"  )
-    total_investment=fields.Float("Total Investment"  )
-    total_sale=fields.Float("Total Sale"  )
+    total_expence=fields.Float("Total Expence", readonly="1" )
+    total_investment=fields.Float("Total Investment", readonly="1" )
+    total_sale=fields.Float("Total Sale", readonly="1" )
     
     
 
