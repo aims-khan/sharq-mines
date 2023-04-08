@@ -46,13 +46,14 @@ class sharq_sales(models.Model):
 
     def project_calculations(self, project_id=False):
         domain = [('project_id', '=', project_id.id)]
-        print("\n\nproject_id::::::::::::::::::::::::", project_id)
+        investor_dict = {}
         total_sales = 0
         total_expenses = 0
         total_investments = 0
         sale_ids = self.env['sharq_sales.sharq_sales'].search(domain)
         expense_ids = self.env['sharq.expense'].search(domain)
         investment_ids = self.env['investment.investment'].search(domain)
+        project_line_obj = self.env['project.line']
         for sale_rec in sale_ids:
             # print(">>>>>>>>>>>>>", sale_rec.qunantity)
             total_sales += (sale_rec.qunantity * sale_rec.cost)
@@ -60,12 +61,30 @@ class sharq_sales(models.Model):
             total_expenses += expense_rec.amount
         for invest_rec in investment_ids:
             total_investments += invest_rec.amount
+            for line in invest_rec.line_ids:
+                print("::::::::::::::::::::::::", line)
+            # if investor_dict.get()
+            # investor_dict
         
+
+        # project_line_obj.create({
+        #     'project_id' = project_id,
+        #     'investor_id' = ,
+        #     investment = ,
+        #     expense = ,
+        #     sale = ,
+        #     profit = ,
+        # })
+        
+
         project_id.update({
             'total_sale':total_sales,
             'total_expence':total_expenses,
             'total_investment':total_investments,
+            # 'line_ids': 
         })
+
+
 
     # @api.model_create_multi
     # def create(self, vals):
