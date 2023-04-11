@@ -53,13 +53,15 @@ class sharq_sales(models.Model):
 
     def project_calculations(self, project_id=False):
         domain = [('project_id', '=', project_id.id)]
-        print("\n\nproject_id::::::::::::::::::::::::", project_id)
+        investor_dict = {}
         total_sales = 0
         total_expenses = 0
         total_investments = 0
         sale_ids = self.env['sharq_sales.sharq_sales'].search(domain)
         expense_ids = self.env['sharq.expense'].search(domain)
         investment_ids = self.env['investment.investment'].search(domain)
+        project_line_obj = self.env['project.line']
+        # project_line_ids = []
         for sale_rec in sale_ids:
             # print(">>>>>>>>>>>>>", sale_rec.qunantity)
             total_sales += (sale_rec.qunantity * sale_rec.cost)
@@ -67,11 +69,35 @@ class sharq_sales(models.Model):
             total_expenses += expense_rec.amount
         for invest_rec in investment_ids:
             total_investments += invest_rec.amount
+            for line in invest_rec.line_ids:
+                if not investor_dict.get(line.investor_id.id):
+                    investor_dict[line.investor_id.id] = line.amount
+                elif investor_dict.get(line.investor_id.id):
+                    investor_dict[line.investor_id.id] += line.amount
+            # investor_dict
+        project_id.write({'line_ids': [(5)]})
+        for investor, investment in investor_dict.items():
+            print(">>>>>>>>investor>>>>>>>>", investor, investment)
+            project_line_id = project_line_obj.create({
+                'project_id': project_id.id,
+                'investor_id': investor,
+                'investment': investment,
+                'expense': (investment/total_expenses)*investment,
+                'sale': (investment/total_investments)*investment,
+                'profit': 0,
+            })
+            # project_line_ids.append(project_line_id.id)
+            # print(":::::::::::::::::project_id:::::::::::::::::::", project_line_ids)
+            # project_id.write({
+            # })
         
-        project_id.update({
-            'total_sale':total_sales,
-            'total_expence':total_expenses,
-            'total_investment':total_investments,
+
+        project_id.write({
+            'total_sale': total_sales,
+            'total_expence': total_expenses,
+            'total_investment': total_investments,
+            # 'line_ids': [(6, 0, [project_line_ids])],
+            # 'line_ids': 
         })
 
 

@@ -25,10 +25,13 @@ class ProjectLine(models.Model):
     #relational fields
     project_id=fields.Many2one("project.project")
     investor_id=fields.Many2one("res.partner")
-    expense_id=fields.Many2one("sharq.expense")
-    sale_id=fields.Many2one("sharq_sales.sharq_sales")
-    part=fields.Many2one("investment.investment")
-    profite=fields.Float("Profite")
+    # expense_id=fields.Many2one("sharq.expense")
+    # sale_id=fields.Many2one("sharq_sales.sharq_sales")
+    # part=fields.Many2one("investment.investment")
+    investment = fields.Float()
+    expense = fields.Float()
+    sale = fields.Float()
+    profit = fields.Float()
 
 
 
