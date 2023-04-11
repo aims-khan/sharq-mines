@@ -44,8 +44,8 @@
                                 <field name="quantity" required="1"/>
                                 <field name="unit_price" required="1"/>
                                 <field name="total"/>
-                                <field name="oilquantity" />
-                                <field name="oiltotal"  />
+                                <field name="oil_quantity" />
+                                <field name="oil_total"  />
                                
                               </tree>
                             </field>

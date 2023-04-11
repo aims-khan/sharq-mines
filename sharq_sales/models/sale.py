@@ -82,15 +82,11 @@ class sharq_sales(models.Model):
                 'project_id': project_id.id,
                 'investor_id': investor,
                 'investment': investment,
-                'expense': (investment/total_expenses)*investment,
                 'sale': (investment/total_investments)*investment,
+                'expense': (investment/total_expenses)*investment if total_expenses else 0,
                 'profit': 0,
             })
-            # project_line_ids.append(project_line_id.id)
-            # print(":::::::::::::::::project_id:::::::::::::::::::", project_line_ids)
-            # project_id.write({
-            # })
-        
+            
 
         project_id.write({
             'total_sale': total_sales,
@@ -99,19 +95,4 @@ class sharq_sales(models.Model):
             # 'line_ids': [(6, 0, [project_line_ids])],
             # 'line_ids': 
         })
-
-
-    
-
-   
-    # @api.model_c
-    # 
-    # reate_multi
-    # def create(self, vals):
-    #     res = super(sharq_sales, self).create(vals)
-        
-    #     return res
-
-    # def write(seld, vals):
-    #     print("\n::::::::::::::::::::::write function called")
  

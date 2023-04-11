@@ -44,6 +44,7 @@ class sharqExpense(models.Model):
                 total = total + line.total
             self.amount = total
 
+     
 class ExpenseLine(models.Model):
     _name = 'sharq.expense.line'
     _description = 'sharq.expense.line'
@@ -57,30 +58,23 @@ class ExpenseLine(models.Model):
     oil_total=fields.Float('Oil Total', compute='_total_oil_expance', store=True)
 
 
+    
+    
+  
     @api.depends('quantity', 'unit_price')
     def _total_expance(self):
 
-        print(">>>>>>>>>>>>>>>>>>rec", self)
         for rec in self:
-        #    'total': rec.quantity*rec.unit_price,
             rec.update({
-
                     'total': rec.quantity*rec.unit_price,
-
                 })
  
     @api.depends('oil_quantity', 'quantity')
     def _total_oil_expance(self):
-
         for rec in self:
-
             rec.update({
-
                 'oil_total': rec.oil_quantity*rec.quantity,
-
             })
-
-  
     
 
     
