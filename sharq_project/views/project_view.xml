@@ -22,10 +22,10 @@
                         <field name="line_ids" readonly="1">
                         <tree >
                             <field name="investor_id"/>
-                            <field name="expense_id"/>
-                            <field name="sale_id"/>
-                            <field name="part"/>
-                            <field name="profite"/>
+                            <field name="investment"/>
+                            <field name="expense"/>
+                            <field name="sale"/>
+                            <field name="profit"/>
                         </tree>
                         </field>
                     </page>

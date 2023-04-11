@@ -31,7 +31,7 @@ class ProjectLine(models.Model):
     investment = fields.Float()
     expense = fields.Float()
     sale = fields.Float()
-    profit=fields.Float()
+    profit = fields.Float()
 
 
 
