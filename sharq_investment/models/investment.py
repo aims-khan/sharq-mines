@@ -32,16 +32,10 @@ class Investment(models.Model):
         ('project_uniq', 'unique (project_id)', 'An investment already exists for this project.'),
     ]
 
-    # @api.constrains('amount')
-    # def calculate_project_investment(self):
-    #     self.env['sharq_sales.sharq_sales'].project_calculations(self.project_id)
-
-    def write(self, vals):
-        res = super(Investment, self).write(vals)
-        if 'project_id' in vals or 'amount' in vals:
-            sales_model = self.env['sharq_sales.sharq_sales']
-            sales_model.project_calculations(self.project_id)
-        return res
+    @api.constrains('amount')
+    def calculate_project_investment(self):
+        self.env['sharq_sales.sharq_sales'].project_calculations(self.project_id)
+ 
 
     # def check_deleted_investment(self, investment_id):
     #     models_to_check = ['sharq_sales.sharq_sales', 'sharq.expense', 'project.line']
