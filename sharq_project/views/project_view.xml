@@ -22,10 +22,10 @@
                         <field name="line_ids" readonly="1">
                         <tree >
                             <field name="investor_id"/>
-                            <field name="expense_id"/>
-                            <field name="sale_id"/>
-                            <field name="part"/>
-                            <field name="profite"/>
+                            <field name="investment"/>
+                            <field name="expense"/>
+                            <field name="sale"/>
+                            <field name="profit"/>
                         </tree>
                         </field>
                     </page>
@@ -67,6 +67,20 @@
                 </xpath>
             </field>
         </record>
+        <!-- <record id="project_project_view_form_simplified_footer" model="ir.ui.view">
+            <field name="name">project.project.view.form.simplified</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <footer>
+                        <button string="Create" name="open_view_project_all_group_stage" type="object" class="btn-primary o_open_tasks" data-hotkey="q"/>
+                        <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </xpath>
+            </field>
+        </record> -->
 
         <record model="ir.ui.view" id="view_project_inherit_kanban">
             <field name="name">project.project.inherit.kanban</field>

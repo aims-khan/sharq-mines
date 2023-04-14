@@ -44,8 +44,8 @@
                                 <field name="quantity" required="1"/>
                                 <field name="unit_price" required="1"/>
                                 <field name="total"/>
-                                <field name="oil_quantity" />
-                                <field name="oil_total" />
+                                <field name="oil__quantity" />
+                                <field name="oil__total" />
                                 <!-- attrs="{'invisible': [('product_id.type', '=', 'machiner')]}" -->
                               </tree>
                             </field>
