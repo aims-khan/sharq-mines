@@ -19,9 +19,6 @@ class project(models.Model):
     
     
 
-    
-
-
 class ProjectLine(models.Model):
     _name = 'project.line'
     _description = 'sharq_project.project.line.description'
@@ -31,10 +28,8 @@ class ProjectLine(models.Model):
     investor_id=fields.Many2one("res.partner")
     investment = fields.Float()
     expense = fields.Float()
-    sale  = fields.Float()
-    profit  = fields.Float()
-
-
+    sale = fields.Float()
+    profit = fields.Float()
 
 
 
