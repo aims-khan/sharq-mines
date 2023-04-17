@@ -46,7 +46,6 @@
                                 <field name="total"/>
                                 <field name="oil_quantity" />
                                 <field name="oil_total"  />
-                               
                               </tree>
                             </field>
                         </page>

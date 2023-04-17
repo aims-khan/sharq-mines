@@ -22,6 +22,7 @@
     'depends': ['base','hr', 'project'],
 
     'data': [
+        'security/sharq_investment_security.xml',
         'security/ir.model.access.csv',
         'views/employee_inherit_view.xml',
         'views/investment_view.xml',
@@ -34,4 +35,5 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'license': 'LGPL-3',
 }
