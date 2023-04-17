@@ -6,12 +6,13 @@ class sharqExpense(models.Model):
     _description = 'sharq.expense'
 
     name = fields.Char()
-    project_id = fields.Many2one('project.project')
-    line_ids = fields.One2many('sharq.expense.line','expense_id')
     amount = fields.Integer('Amount', compute="_total_bill", store=True)
     date = fields.Date()
     action = fields.Boolean()
 
+    # Relational Fields
+    project_id = fields.Many2one('project.project')
+    line_ids = fields.One2many('sharq.expense.line','expense_id')
 
 
     
@@ -60,7 +61,6 @@ class ExpenseLine(models.Model):
     @api.depends('quantity', 'unit_price')
     def _total_expance(self):
 
-        print(">>>>>>>>>>>>>>>>>>rec", self)
         for rec in self:
         #    'total': rec.quantity*rec.unit_price,
             rec.update({

@@ -20,10 +20,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
+        'security/sharq_expense_security.xml',
         'security/ir.model.access.csv',
         'views/sharq_expense_view.xml',
         'views/sharq_product_view.xml',
@@ -35,4 +36,5 @@
     # 'demo': [
     #     'demo/demo.xml',
     # ],
+    'license': 'LGPL-3',
 }
