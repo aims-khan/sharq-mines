@@ -11,7 +11,7 @@ class sharq_sales(models.Model):
     _rec_name="project_id"
     
     project_id=fields.Many2one('project.project')
-    qunantity=fields.Float("Qunantity")
+    quantity=fields.Float("Quantity")
     date=fields.Date("Date")
     cost=fields.Integer("Cost")
     description = fields.Text()
@@ -28,14 +28,14 @@ class sharq_sales(models.Model):
     def action_approved(self):
         self.write({'state': 'draft'})
 
-    @api.depends('qunantity', 'cost')
+    @api.depends('quantity', 'cost')
     def _sum(self):
 
         for rec in self:
 
             rec.update({
 
-                'total': rec.qunantity*rec.cost,
+                'total': rec.quantity*rec.cost,
 
             })
     @api.constrains('project_id')
@@ -66,8 +66,8 @@ class sharq_sales(models.Model):
         project_line_obj = self.env['project.line']
         # project_line_ids = []
         for sale_rec in sale_ids:
-            # print(">>>>>>>>>>>>>", sale_rec.qunantity)
-            total_sales += (sale_rec.qunantity * sale_rec.cost)
+            # print(">>>>>>>>>>>>>", sale_rec.quantity)
+            total_sales += (sale_rec.quantity * sale_rec.cost)
         for expense_rec in expense_ids:
             total_expenses += expense_rec.amount
         print("investment_ids:::::::::::::::", investment_ids)

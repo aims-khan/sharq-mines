@@ -31,8 +31,8 @@ class ProjectLine(models.Model):
     investor_id=fields.Many2one("res.partner")
     investment = fields.Float()
     expense = fields.Float()
-    sale = fields.Float()
-    profit = fields.Float()
+    sale  = fields.Float()
+    profit  = fields.Float()
 
 
 
