@@ -54,17 +54,13 @@ class ExpenseLine(models.Model):
     expense_id = fields.Many2one('sharq.expense')
     quantity = fields.Float('Quantity')
     unit_price = fields.Float('Unit Price')
-    total = fields.Float('Total', compute='_total_expance', store=True)
+    total = fields.Float('Total', compute='_sum_quantity_unit_price', store=True)
     oil_quantity=fields.Float("Oil Quantity")
     oil_total=fields.Float('Oil Total', compute='_total_oil_expance', store=True)
 
 
-    
-    
-  
     @api.depends('quantity', 'unit_price')
-    def _total_expance(self):
-
+    def _sum_quantity_unit_price(self):
         for rec in self:
             rec.update({
                     'total': rec.quantity*rec.unit_price,
