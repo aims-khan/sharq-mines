@@ -1,0 +1,12 @@
+<odoo>
+    <template id="monthly_expense_report">
+        <t t-call="web.html_container">
+            <t t-foreach="data">
+                <div class="page">
+                    <h1>This is my first report</h1>
+                    <!-- <p><span t-esc="data.date"/></p> -->
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

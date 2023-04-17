@@ -1,0 +1,12 @@
+<odoo>
+    <record model="ir.actions.report" id="action_monthly_expense_report">
+        <field name="name">Monthly Expense Report</field>
+        <field name="model">sharq.expense.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sharq_expense.monthly_expense_report</field>
+        <field name="report_file">sharq_expense.monthly_expense_report</field>
+        <field name="print_report_name">'Sharq Monthly Expense Report'</field>
+        <field name="binding_model_id" ref="model_sharq_expense_report_wizard"></field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

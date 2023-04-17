@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="sharq_expense_list_view">
+      <field name="name">expense list</field>
+      <field name="model">sharq.expense</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="project_id"/>
+          <field name="amount"/>
+          <field name="date"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="sharq_expense_form_form">
+        <field name="name">expense form</field>
+        <field name="model">sharq.expense</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_draft" type="object" string="Draft" attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                    <button name="action_approved" type="object" string="Approve" attrs="{'invisible':[('state', '=', 'approved')]}"/>
+                    <field name="state" widget="statusbar"  statusbar_visible="draft,approved"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state', '=', 'approved')]}" required="1"/>
+                            <field name="project_id" required="1" attrs="{'readonly': [('state', '=', 'approved')]}"/>
+                        </group>
+                        <group>
+                            <field name="amount" attrs="{'readonly': [('state', '=', 'approved')]}" readonly="1"/>
+                            <field name="date" attrs="{'readonly': [('state', '=', 'approved')]}" required="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Expenses List">
+                            <field name="line_ids" attrs="{'readonly': [('state', '=', 'approved')]}" options="{'no_open': True}">
+                              <tree editable="top" >
+                                <field name="product_id" required="1"/>
+                                <field name="quantity" required="1"/>
+                                <field name="unit_price" required="1"/>
+                                <field name="total"/>
+                                <field name="oil_quantity" />
+                                <field name="oil_total"  />
+                              </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sharq_expense_action_window">
+      <field name="name">Expense</field>
+      <field name="res_model">sharq.expense</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Expense" id="sharq_expense_menu_root"/>
+
+    <menuitem name="Expenses" id="sharq_expense_menu" parent="sharq_expense_menu_root"
+    action="sharq_expense_action_window"/>  
+
+  </data>
+</odoo>

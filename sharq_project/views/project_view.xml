@@ -1,5 +1,87 @@
 <odoo>
     <data>
+        <record model="ir.ui.view" id="view_project_inherit">
+            <field name="name">project.project.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='settings']" position="after">
+                    <page string="Employee">
+                        <field name="employee_ids" readonly="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="salary"/>
+                            <field name="mobile_phone"/>
+                            <field name="department_id"/>
+                        </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//page[@name='settings']" position="before">
+                    <page string="Investor Info">
+                        <field name="line_ids" readonly="1">
+                        <tree >
+                            <field name="investor_id"/>
+                            <field name="investment"/>
+                            <field name="expense"/>
+                            <field name="sale"/>
+                            <field name="profit"/>
+                        </tree>
+                        </field>
+                    </page>
+                </xpath>
+                 <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="total_investment" />
+                </xpath>
+                 <xpath expr="//field[@name='total_investment']" position="after">
+                    <field name="total_expence" />
+                </xpath>
+                 <xpath expr="//field[@name='total_expence']" position="after">
+                    <field name="total_sale" />
+                </xpath>
+                
+                <xpath expr="//header" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='settings']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='description']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                     <field name="product"/>
+                </xpath>
+                <xpath expr="//field[@name='product']" position="after">
+                     <field name="user_id"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- <record id="project_project_view_form_simplified_footer" model="ir.ui.view">
+            <field name="name">project.project.view.form.simplified</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <footer>
+                        <button string="Create" name="open_view_project_all_group_stage" type="object" class="btn-primary o_open_tasks" data-hotkey="q"/>
+                        <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </xpath>
+            </field>
+        </record> -->
+
         <record model="ir.ui.view" id="view_project_inherit_kanban">
             <field name="name">project.project.inherit.kanban</field>
             <field name="model">project.project</field>
@@ -12,3 +94,7 @@
         </record>
     </data>
 </odoo>
+
+
+  
+   

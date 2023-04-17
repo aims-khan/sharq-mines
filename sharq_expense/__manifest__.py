@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "project",
+    'name': "sharq_expense",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,21 +20,21 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['web', 'project', 'sharq_investment'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
+        'security/sharq_expense_security.xml',
         'security/ir.model.access.csv',
-        'views/project_view.xml',
+        'views/sharq_expense_view.xml',
+        'views/sharq_product_view.xml',
+        'wizard/sharq_monthly_expense_report_wizard_view.xml',
+        'reports/reports.xml',
+        'reports/monthly_expense_report.xml', 
     ],
-    'assets': {
-        'web.assets_backend': [
-            'sharq_project/static/src/js/project_kanban.js',
-        ],
-    },
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    # 'demo': [
+    #     'demo/demo.xml',
+    # ],
     'license': 'LGPL-3',
 }

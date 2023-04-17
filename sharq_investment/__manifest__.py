@@ -19,16 +19,21 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['base','hr'],
+    'depends': ['base','hr', 'project'],
 
     'data': [
+        'security/sharq_investment_security.xml',
         'security/ir.model.access.csv',
         'views/employee_inherit_view.xml',
         'views/investment_view.xml',
+        'reports/report.xml',
+        'reports/investment_monthly_report.xml',
+        'reports/partner_report.xml',
         
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'license': 'LGPL-3',
 }
