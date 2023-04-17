@@ -37,6 +37,7 @@ class sharq_sales(models.Model):
                 'total': rec.qunantity*rec.cost,
 
             })
+
     @api.constrains('project_id')
     def _check_investment(self):
         # project_id = self.project_id
@@ -47,11 +48,13 @@ class sharq_sales(models.Model):
     @api.constrains('total')
     def calc_project_calculations(self):
         for rec in self:
-            # project_id = project_id if project_id else rec.project_id
+            # project_id = rec.project_id
             self.project_calculations(self.project_id) 
     
-
     def project_calculations(self, project_id=False):
+        if not project_id:
+            project_id = self.project_id
+        print(">>>>>>>>>>>>>>>project_id>>>>>>>>>>>>>>>>>>", project_id)
         domain = [('project_id', '=', project_id.id)]
         investor_dict = {}
         total_sales = 0
@@ -67,8 +70,10 @@ class sharq_sales(models.Model):
             total_sales += (sale_rec.qunantity * sale_rec.cost)
         for expense_rec in expense_ids:
             total_expenses += expense_rec.amount
+        print("investment_ids:::::::::::::::", investment_ids)
         for invest_rec in investment_ids:
             total_investments += invest_rec.amount
+            print("ivnest_rec.line_ids>>>>>>>>>>>>>>>>>>>>>", invest_rec.line_ids)
             for line in invest_rec.line_ids:
                 if not investor_dict.get(line.investor_id.id):
                     investor_dict[line.investor_id.id] = line.amount
@@ -76,42 +81,24 @@ class sharq_sales(models.Model):
                     investor_dict[line.investor_id.id] += line.amount
             # investor_dict
         project_id.write({'line_ids': [(5)]})
+        print("dict>>>>>>>>>>>>>>>>>>>", investor_dict)
         for investor, investment in investor_dict.items():
             print(">>>>>>>>investor>>>>>>>>", investor, investment)
             project_line_id = project_line_obj.create({
                 'project_id': project_id.id,
                 'investor_id': investor,
                 'investment': investment,
-                'expense': (investment/total_expenses)*investment,
-                'sale': (investment/total_investments)*investment,
-                'profit': 0,
+                # total money from profit of project here we should calculate amount of the profit of the project total_sale-total_investment instead of 200000
+                'sale': (((100*investment)/total_investments)*(total_sales-total_investments))/100,
+                # total expance belonges to a persone
+                'expense': (((100*investment)/total_investments)*total_expenses)/100 if total_expenses else 0,
+                # percentage in project
+                'profit': (100*investment)/total_investments,
             })
-            # project_line_ids.append(project_line_id.id)
-            # print(":::::::::::::::::project_id:::::::::::::::::::", project_line_ids)
-            # project_id.write({
-            # })
-        
+            
 
         project_id.write({
             'total_sale': total_sales,
             'total_expence': total_expenses,
             'total_investment': total_investments,
-            # 'line_ids': [(6, 0, [project_line_ids])],
-            # 'line_ids': 
         })
-
-
-    
-
-   
-    # @api.model_c
-    # 
-    # reate_multi
-    # def create(self, vals):
-    #     res = super(sharq_sales, self).create(vals)
-        
-    #     return res
-
-    # def write(seld, vals):
-    #     print("\n::::::::::::::::::::::write function called")
- 
