@@ -14,6 +14,13 @@ class sharqExpense(models.Model):
     project_id = fields.Many2one('project.project')
     line_ids = fields.One2many('sharq.expense.line','expense_id')
 
+    @api.constrains('project_id')
+    def _check_investment(self):
+        if not self.project_id:
+            return
+        investment_ids = self.env['investment.investment'].search([('project_id', '=', self.project_id.id)])
+        if not investment_ids:
+            raise ValidationError("There are no investments for the selected project. You cannot proceed with the sale.")
 
     
     
