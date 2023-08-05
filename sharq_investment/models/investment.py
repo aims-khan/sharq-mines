@@ -71,10 +71,10 @@ class Investment(models.Model):
 
     @api.constrains('line_ids')
     def _total_amount(self):
-            amount = 0
-            for line in self.line_ids:
-                amount = amount + line.amount
-            self.amount = amount
+        amount = 0
+        for line in self.line_ids:
+            amount = amount + line.amount
+        self.amount = amount
 
 
      
