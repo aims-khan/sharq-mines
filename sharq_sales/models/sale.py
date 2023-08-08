@@ -96,17 +96,3 @@ class sharq_sales(models.Model):
             'total_expence': total_expenses,
             'total_investment': total_investments,
         })
-
-
-
-
-
-
-
-
-
-
-
-        
-
-    
