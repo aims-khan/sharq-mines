@@ -9,13 +9,3 @@ class EmployeeInherit(models.Model):
     salary = fields.Float("Salary")
 
     project_id = fields.Many2one("project.project")
-
-class HrEmployeePublicInherit(models.Model):
-    _inherit = "hr.employee.public"
-    _description = "Sharq Employee for extra fields"
-
-    salary = fields.Float("Salary")
-
-    project_id = fields.Many2one("project.project")
-    
- 

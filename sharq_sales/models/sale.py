@@ -50,11 +50,9 @@ class sharq_sales(models.Model):
         for rec in self:
             # project_id = rec.project_id
             self.project_calculations(self.project_id) 
-    
     def project_calculations(self, project_id=False):
         if not project_id:
             project_id = self.project_id
-        print(">>>>>>>>>>>>>>>project_id>>>>>>>>>>>>>>>>>>", project_id)
         domain = [('project_id', '=', project_id.id)]
         investor_dict = {}
         total_sales = 0
@@ -64,41 +62,51 @@ class sharq_sales(models.Model):
         expense_ids = self.env['sharq.expense'].search(domain)
         investment_ids = self.env['investment.investment'].search(domain)
         project_line_obj = self.env['project.line']
-        # project_line_ids = []
+
+        # Clear existing project lines for the current project
+        project_id.line_ids.unlink()
+
         for sale_rec in sale_ids:
-            # print(">>>>>>>>>>>>>", sale_rec.quantity)
             total_sales += (sale_rec.quantity * sale_rec.cost)
         for expense_rec in expense_ids:
             total_expenses += expense_rec.amount
-        print("investment_ids:::::::::::::::", investment_ids)
+
         for invest_rec in investment_ids:
-            total_investments += invest_rec.amount
-            print("ivnest_rec.line_ids>>>>>>>>>>>>>>>>>>>>>", invest_rec.line_ids)
-            for line in invest_rec.line_ids:
-                if not investor_dict.get(line.investor_id.id):
-                    investor_dict[line.investor_id.id] = line.amount
-                elif investor_dict.get(line.investor_id.id):
-                    investor_dict[line.investor_id.id] += line.amount
-            # investor_dict
-        project_id.write({'line_ids': [(5)]})
-        print("dict>>>>>>>>>>>>>>>>>>>", investor_dict)
+            if invest_rec.project_id == project_id:  # Check if investment is for the current project
+                total_investments += invest_rec.amount
+                for line in invest_rec.line_ids:
+                    if not investor_dict.get(line.investor_id.id):
+                        investor_dict[line.investor_id.id] = line.amount
+                    elif investor_dict.get(line.investor_id.id):
+                        investor_dict[line.investor_id.id] += line.amount
+                    
+            
         for investor, investment in investor_dict.items():
-            print(">>>>>>>>investor>>>>>>>>", investor, investment)
             project_line_id = project_line_obj.create({
                 'project_id': project_id.id,
                 'investor_id': investor,
                 'investment': investment,
-                # total money from profit of project here we should calculate amount of the profit of the project total_sale-total_investment instead of 200000
-                'sale': (((100*investment)/total_investments)*(total_sales-total_investments))/100,
-                # total expance belonges to a persone
+                'sale': (((100*investment)/total_investments)*(total_sales-total_investments))/100 if total_sales else 0,
                 'expense': (((100*investment)/total_investments)*total_expenses)/100 if total_expenses else 0,
-                # percentage in project
-                'profit': (100*investment)/total_investments,
+                'profit': (100*investment)/total_investments if total_sales else 0,
             })
-            
-
+        
         project_id.write({
             'total_sale': total_sales,
             'total_expence': total_expenses,
             'total_investment': total_investments,
         })
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    

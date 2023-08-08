@@ -36,32 +36,6 @@ class Investment(models.Model):
     def calculate_project_investment(self):
         self.env['sharq_sales.sharq_sales'].project_calculations(self.project_id)
  
-
-    # def check_deleted_investment(self, investment_id):
-    #     models_to_check = ['sharq_sales.sharq_sales', 'sharq.expense', 'project.line']
-    #     for model_name in models_to_check:
-    #         model = self.env[model_name]
-    #         related_records = model.search([('investment_id', '=', investment_id)])
-    #         if related_records:
-    #             # If there are related records, you can either update or delete them depending on your requirements.
-    #             # For example, to update the foreign key to None:
-    #             related_records.write({'investment_id': None})
-    # @api.multi
-    # def unlink(self):
-    #     for investment in self:
-    #         # Check if the investment is referenced by any other objects
-    #         sale_ids = self.env['sharq_sales.sharq_sales'].search([('investment_id', '=', investment.id)])
-    #         expense_ids = self.env['sharq.expense'].search([('investment_id', '=', investment.id)])
-    #         project_line_ids = self.env['project.line'].search([('investment_id', '=', investment.id)])
-    #         if sale_ids or expense_ids or project_line_ids:
-    #             # Investment is referenced by other objects, raise an error or update/delete them accordingly
-    #             # For example, you can raise an error and prevent the deletion of the investment:
-    #             raise ValidationError('Cannot delete investment that is referenced by sales, expenses, or project lines')
-    #         else:
-    #             # Investment is not referenced by any other objects, proceed with deletion
-    #             super(Investment, investment).unlink()
-    #     return True
-
     def action_draft(self):
         self.write({'state':'approved'})
 
@@ -71,10 +45,10 @@ class Investment(models.Model):
 
     @api.constrains('line_ids')
     def _total_amount(self):
-            amount = 0
-            for line in self.line_ids:
-                amount = amount + line.amount
-            self.amount = amount
+        amount = 0
+        for line in self.line_ids:
+            amount = amount + line.amount
+        self.amount = amount
 
 
      

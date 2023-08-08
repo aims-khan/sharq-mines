@@ -16,7 +16,7 @@ class project(models.Model):
     total_expence=fields.Float("Total Expence", readonly="1" )
     total_investment=fields.Float("Total Investment", readonly="1" )
     total_sale=fields.Float("Total Sale", readonly="1" )
-    
+    investor_id = fields.Many2one('project.line')
     
 
 class ProjectLine(models.Model):
