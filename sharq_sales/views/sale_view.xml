@@ -8,7 +8,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="project_id"/>
-          <field name="qunantity"/>
+          <field name="quantity"/>
           <field name="cost"/>
           <field name="date"/>
           <field name="total"/>
@@ -30,7 +30,7 @@
                 <group>
                     <group>
                         <field name="project_id" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                        <field name="qunantity" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="quantity" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         <field name="cost"  attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                     </group>
                     <group>
@@ -63,7 +63,7 @@
 
     <!-- menu categories -->
 
-    <menuitem name="Menu 1" id="sharq_sales.menu_1" parent="sharq_sales.menu_root"  action="sharq_sales.action_window"/>
+    <menuitem name="Sales" id="sharq_sales.menu_1" parent="sharq_sales.menu_root"  action="sharq_sales.action_window"/>
 
     <!-- actions -->
  

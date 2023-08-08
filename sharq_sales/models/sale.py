@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class sharq_sales(models.Model):
@@ -10,7 +11,7 @@ class sharq_sales(models.Model):
     _rec_name="project_id"
     
     project_id=fields.Many2one('project.project')
-    qunantity=fields.Float("Qunantity")
+    quantity=fields.Float("Quantity")
     date=fields.Date("Date")
     cost=fields.Integer("Cost")
     description = fields.Text()
@@ -27,17 +28,16 @@ class sharq_sales(models.Model):
     def action_approved(self):
         self.write({'state': 'draft'})
 
-    @api.depends('qunantity', 'cost')
+    @api.depends('quantity', 'cost')
     def _sum(self):
 
         for rec in self:
 
             rec.update({
 
-                'total': rec.qunantity*rec.cost,
+                'total': rec.quantity*rec.cost,
 
             })
-
     @api.constrains('project_id')
     def _check_investment(self):
         # project_id = self.project_id
@@ -50,11 +50,12 @@ class sharq_sales(models.Model):
         for rec in self:
             # project_id = rec.project_id
             self.project_calculations(self.project_id) 
+
+    
     
     def project_calculations(self, project_id=False):
         if not project_id:
             project_id = self.project_id
-        print(">>>>>>>>>>>>>>>project_id>>>>>>>>>>>>>>>>>>", project_id)
         domain = [('project_id', '=', project_id.id)]
         investor_dict = {}
         total_sales = 0
@@ -66,14 +67,11 @@ class sharq_sales(models.Model):
         project_line_obj = self.env['project.line']
         # project_line_ids = []
         for sale_rec in sale_ids:
-            # print(">>>>>>>>>>>>>", sale_rec.qunantity)
-            total_sales += (sale_rec.qunantity * sale_rec.cost)
+            total_sales += (sale_rec.quantity * sale_rec.cost)
         for expense_rec in expense_ids:
             total_expenses += expense_rec.amount
-        print("investment_ids:::::::::::::::", investment_ids)
         for invest_rec in investment_ids:
             total_investments += invest_rec.amount
-            print("ivnest_rec.line_ids>>>>>>>>>>>>>>>>>>>>>", invest_rec.line_ids)
             for line in invest_rec.line_ids:
                 if not investor_dict.get(line.investor_id.id):
                     investor_dict[line.investor_id.id] = line.amount
@@ -81,20 +79,17 @@ class sharq_sales(models.Model):
                     investor_dict[line.investor_id.id] += line.amount
             # investor_dict
         project_id.write({'line_ids': [(5)]})
-        print("dict>>>>>>>>>>>>>>>>>>>", investor_dict)
         for investor, investment in investor_dict.items():
-            print(">>>>>>>>investor>>>>>>>>", investor, investment)
             project_line_id = project_line_obj.create({
                 'project_id': project_id.id,
                 'investor_id': investor,
                 'investment': investment,
                 # total money from profit of project here we should calculate amount of the profit of the project total_sale-total_investment instead of 200000
-                'sale': (((100*investment)/total_investments)*(total_sales-total_investments))/100,
+                'sale': (((100*investment)/total_investments)*(total_sales-total_investments))/100 if total_sales else 0,
                 # total expance belonges to a persone
                 'expense': (((100*investment)/total_investments)*total_expenses)/100 if total_expenses else 0,
                 # percentage in project
-                'profit': (100*investment)/total_investments,
-            })
+                'profit': (100*investment)/total_investments if total_sales else 0,            })
             
 
         project_id.write({
@@ -102,3 +97,4 @@ class sharq_sales(models.Model):
             'total_expence': total_expenses,
             'total_investment': total_investments,
         })
+        

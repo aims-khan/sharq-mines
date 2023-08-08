@@ -2,4 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_sharq_expense,sharq.expense,model_sharq_expense,sharq_expense.group_expense_models_access,1,1,1,1
 access_sharq_product,sharq.product,model_sharq_product,sharq_expense.group_expense_models_access,1,1,1,1
 access_sharq_expense_line,sharq.expense.line,model_sharq_expense_line,sharq_expense.group_expense_models_access,1,1,1,1
+access_sharq_product,sharq.product,model_sharq_product,sharq_expense.group_expense_models_access,1,1,1,1
 access_sharq_expense_montly_report,sharq.expense.monthly.roport,model_sharq_expense_report_wizard,sharq_expense.group_expense_models_access,1,1,1,1

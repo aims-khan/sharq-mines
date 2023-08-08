@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','project'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
@@ -29,8 +29,8 @@
         'views/sale_view.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    # 'demo': [
+    #     'demo/demo.xml',
+    # ],
     'license': 'LGPL-3',
 }

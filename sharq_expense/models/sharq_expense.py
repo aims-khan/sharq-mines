@@ -7,13 +7,24 @@ class sharqExpense(models.Model):
 
     name = fields.Char()
     amount = fields.Integer('Amount', compute="_total_bill", store=True)
+    reminder = fields.Integer('Reminder', compute="_total_reminder", store=True)
+    payed = fields.Integer('Paid',compute="_total_payed", store=True)
     date = fields.Date()
     action = fields.Boolean()
+    
+    descripation = fields.Text("Descripation")
 
     # Relational Fields
     project_id = fields.Many2one('project.project')
     line_ids = fields.One2many('sharq.expense.line','expense_id')
 
+    @api.constrains('project_id')
+    def _check_investment(self):
+        if not self.project_id:
+            return
+        investment_ids = self.env['investment.investment'].search([('project_id', '=', self.project_id.id)])
+        if not investment_ids:
+            raise ValidationError("There are no investments for the selected project. You cannot proceed with the sale.")
 
     
     
@@ -42,8 +53,26 @@ class sharqExpense(models.Model):
         if any(self.line_ids):
             total = 0
             for line in self.line_ids:
+                total = total + line.reminder
+            self.reminder = total
+
+
+    @api.constrains('line_ids')
+    def _total_reminder(self):
+        if any(self.line_ids):
+            total = 0
+            for line in self.line_ids:
                 total = total + line.total
             self.amount = total
+
+    @api.constrains('line_ids')
+    def _total_payed(self):
+        if any(self.line_ids):
+            total = 0
+            for line in self.line_ids:
+                total = total + line.payed
+            self.payed = total
+    
 
      
 class ExpenseLine(models.Model):
@@ -54,21 +83,32 @@ class ExpenseLine(models.Model):
     expense_id = fields.Many2one('sharq.expense')
     quantity = fields.Float('Quantity')
     unit_price = fields.Float('Unit Price')
-    total = fields.Float('Total', compute='_total_expance', store=True)
+    total = fields.Float('Total', compute='_sum_quantity_unit_price', store=True)
     oil_quantity=fields.Float("Oil Quantity")
     oil_total=fields.Float('Oil Total', compute='_total_oil_expance', store=True)
+    bill = fields.Char('Bill Number')
+    payed = fields.Integer('Padyed')
+    reminder = fields.Integer('Reminder', compute="_total_reminder", store=True)
+    date = fields.Date(string="Date")
+    descripation = fields.Char("Descripation")
 
 
-    
-    
-  
+   
+
     @api.depends('quantity', 'unit_price')
-    def _total_expance(self):
-
+    def _sum_quantity_unit_price(self):
         for rec in self:
             rec.update({
                     'total': rec.quantity*rec.unit_price,
                 })
+            
+
+    @api.depends('total')
+    def _total_reminder(self):
+        for record in self:
+            total = record.total-record.payed
+            record.reminder = total
+
  
     @api.depends('oil_quantity', 'quantity')
     def _total_oil_expance(self):
