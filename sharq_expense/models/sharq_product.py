@@ -10,12 +10,4 @@ class SharqProduct(models.Model):
     name = fields.Char('Name', index=True, required=True)
     image = fields.Binary(" ")
     des = fields.Text("Descripation")
-    type=fields.Selection(
-        selection=[
-            ('oil', "oil"),
-            ('machiner', "Minchener"),
-            ('misc', 'Misc'),
-        ],
-        string="Type",
-        )
     

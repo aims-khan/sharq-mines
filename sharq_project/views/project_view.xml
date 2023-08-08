@@ -1,5 +1,41 @@
 <odoo>
     <data>
+
+     <record model="ir.ui.view" id="view_project_inherit_tree">
+      <field name="name">project.view_project_inherit_tree</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.view_project"/>
+      <field name="arch" type="xml">
+      
+        <xpath expr="//tree" position="inside">
+            <field name="sequence" optional="show" widget="handle"/>
+            <field name="message_needaction" invisible="1"/>
+            <field name="active" invisible="1"/>
+            <field name="total_expence" readonly="1"/>
+            <field name="total_expence" readonly="1"/>
+            <field name="total_investment" readonly="1"/>
+            <field name="total_sale" readonly="1"/>
+
+        </xpath>
+        <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+        <xpath expr="//field[@name='last_update_status']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+      </field>
+    </record>
+    <record id="project.open_view_project_all" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+    
         <record model="ir.ui.view" id="view_project_inherit">
             <field name="name">project.project.inherit</field>
             <field name="model">project.project</field>
@@ -58,6 +94,18 @@
                 <xpath expr="//field[@name='user_id']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+                <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[@name='dates']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='date_start']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
                 
                 <xpath expr="//field[@name='tag_ids']" position="after">
                      <field name="product"/>
@@ -67,21 +115,6 @@
                 </xpath>
             </field>
         </record>
-        <!-- <record id="project_project_view_form_simplified_footer" model="ir.ui.view">
-            <field name="name">project.project.view.form.simplified</field>
-            <field name="model">project.project</field>
-            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
-            <field name="mode">primary</field>
-            <field name="arch" type="xml">
-                <xpath expr="//group" position="after">
-                    <footer>
-                        <button string="Create" name="open_view_project_all_group_stage" type="object" class="btn-primary o_open_tasks" data-hotkey="q"/>
-                        <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="z"/>
-                    </footer>
-                </xpath>
-            </field>
-        </record> -->
-
         <record model="ir.ui.view" id="view_project_inherit_kanban">
             <field name="name">project.project.inherit.kanban</field>
             <field name="model">project.project</field>
@@ -90,8 +123,12 @@
                 <xpath expr="/kanban" position="attributes">
                     <attribute name="js_class">sharq_project_kanban</attribute>
                 </xpath>
+                <xpath expr="/kanban" position="attributes">
+                    <attribute name="on_create"></attribute>
+                </xpath>
             </field>
         </record>
+
     </data>
 </odoo>
 

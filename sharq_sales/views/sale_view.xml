@@ -63,7 +63,7 @@
 
     <!-- menu categories -->
 
-    <menuitem name="Menu 1" id="sharq_sales.menu_1" parent="sharq_sales.menu_root"  action="sharq_sales.action_window"/>
+    <menuitem name="Sales" id="sharq_sales.menu_1" parent="sharq_sales.menu_root"  action="sharq_sales.action_window"/>
 
     <!-- actions -->
  
