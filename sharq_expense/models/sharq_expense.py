@@ -93,8 +93,6 @@ class ExpenseLine(models.Model):
     descripation = fields.Char("Descripation")
 
 
-   
-
     @api.depends('quantity', 'unit_price')
     def _sum_quantity_unit_price(self):
         for rec in self:
