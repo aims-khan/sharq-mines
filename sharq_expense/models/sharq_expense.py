@@ -87,7 +87,7 @@ class ExpenseLine(models.Model):
     oil_quantity=fields.Float("Oil Quantity")
     oil_total=fields.Float('Oil Total', compute='_total_oil_expance', store=True)
     bill = fields.Char('Bill Number')
-    payed = fields.Integer('Padyed')
+    payed = fields.Integer('Payed')
     reminder = fields.Integer('Reminder', compute="_total_reminder", store=True)
     date = fields.Date(string="Date")
     descripation = fields.Char("Descripation")
@@ -101,7 +101,7 @@ class ExpenseLine(models.Model):
                 })
             
 
-    @api.depends('total')
+    @api.depends('total', 'payed')
     def _total_reminder(self):
         for record in self:
             total = record.total-record.payed
