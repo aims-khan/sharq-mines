@@ -1,12 +1,38 @@
 <odoo>
     <template id="monthly_expense_report">
         <t t-call="web.html_container">
-            <t t-foreach="data">
-                <div class="page">
-                    <h1>This is my first report</h1>
-                    <!-- <p><span t-esc="data.date"/></p> -->
+            <div class="page">
+                <div class="header">
+                    <h1>Monthly Expense Report</h1>
                 </div>
-            </t>
+                <!-- Define the table -->
+                <div class="content">
+                    <table class="table">
+                        <!-- Table Headers -->
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid #ddd; background-color: #f2f2f2;">Project</th>
+                                <th style="border: 1px solid #ddd; background-color: #f2f2f2;">Investment</th>
+                                <th style="border: 1px solid #ddd; background-color: #f2f2f2;">Expenses</th>
+                                <th style="border: 1px solid #ddd; background-color: #f2f2f2;">Sale</th>
+                                <th style="border: 1px solid #ddd; background-color: #f2f2f2;">Start Date</th>
+                                <th style="border: 1px solid #ddd; background-color: #f2f2f2;">End Date</th>
+                            </tr>
+                        </thead>
+                        <!-- Table Body -->
+                        <tbody>
+                            <tr t-foreach="data" t-as="row">
+                                <td style="border: 1px solid #ddd;"> <span t-field="row.name"/> </td>
+                                <td style="border: 1px solid #ddd;"> <span t-field="row.total_investment"/> </td>
+                                <td style="border: 1px solid #ddd;"> <span t-field="row.total_expence"/> </td>
+                                <td style="border: 1px solid #ddd;"> <span t-field="row.total_sale"/> </td>
+                                <td style="border: 1px solid #ddd;"> <span t-field="row.project_start_date"/> </td>
+                                <td style="border: 1px solid #ddd;"> <span t-field="row.project_end_date"/> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </t>
     </template>
 </odoo>

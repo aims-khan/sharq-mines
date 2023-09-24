@@ -13,9 +13,12 @@ class project(models.Model):
     line_ids=fields.One2many("project.line","project_id")
     # investment_id=fields.Many2one("investment.investment")
 
-    total_expence=fields.Float("Total Expence", readonly="1" )
+    total_expence=fields.Float("Total Expense", readonly="1" )
     total_investment=fields.Float("Total Investment", readonly="1" )
     total_sale=fields.Float("Total Sale", readonly="1" )
+    project_start_date = fields.Date(string='Project Start Date')
+    project_end_date = fields.Date(string='Project End Date')
+
     investor_id = fields.Many2one('project.line')
     
 

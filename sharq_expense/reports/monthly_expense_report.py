@@ -6,7 +6,7 @@ class MontlyExpenseReportAbstract(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        print("\n\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", data.get('wizard_data'))
         return {
-            'data': data.get('wizard_data')
+            'data': self.env['project.project'].browse(data.get('wizard_data'))
         }
+        

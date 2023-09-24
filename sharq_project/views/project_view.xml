@@ -1,40 +1,37 @@
 <odoo>
     <data>
 
-     <record model="ir.ui.view" id="view_project_inherit_tree">
-      <field name="name">project.view_project_inherit_tree</field>
-      <field name="model">project.project</field>
-      <field name="inherit_id" ref="project.view_project"/>
-      <field name="arch" type="xml">
-      
-        <xpath expr="//tree" position="inside">
-            <field name="sequence" optional="show" widget="handle"/>
-            <field name="message_needaction" invisible="1"/>
-            <field name="active" invisible="1"/>
-            <field name="total_expence" readonly="1"/>
-            <field name="total_expence" readonly="1"/>
-            <field name="total_investment" readonly="1"/>
-            <field name="total_sale" readonly="1"/>
-
-        </xpath>
-        <xpath expr="//field[@name='partner_id']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-        </xpath>
-        <xpath expr="//field[@name='date']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-        </xpath>
-        <xpath expr="//field[@name='date_start']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-        <xpath expr="//field[@name='last_update_status']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-
-      </field>
-    </record>
-    <record id="project.open_view_project_all" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,form</field>
-    </record>
+        <record model="ir.ui.view" id="view_project_inherit_tree">
+        <field name="name">project.view_project_inherit_tree</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="sequence" optional="show" widget="handle"/>
+                <field name="message_needaction" invisible="1"/>
+                <field name="active" invisible="1"/>
+                <field name="total_expence" readonly="1"/>
+                <field name="total_expence" readonly="1"/>
+                <field name="total_investment" readonly="1"/>
+                <field name="total_sale" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='last_update_status']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+        </record>
+        <record id="project.open_view_project_all" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
     
         <record model="ir.ui.view" id="view_project_inherit">
             <field name="name">project.project.inherit</field>
@@ -72,8 +69,12 @@
                  <xpath expr="//field[@name='total_investment']" position="after">
                     <field name="total_expence" />
                 </xpath>
-                 <xpath expr="//field[@name='total_expence']" position="after">
+                <xpath expr="//field[@name='total_expence']" position="after">
                     <field name="total_sale" />
+                </xpath>
+                <xpath expr="//field[@name='total_sale']" position="after">
+                    <field name="project_start_date" required="1"/>
+                    <field name="project_end_date" />
                 </xpath>
                 
                 <xpath expr="//header" position="attributes">
