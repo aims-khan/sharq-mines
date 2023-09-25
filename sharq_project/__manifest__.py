@@ -26,6 +26,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/project_view.xml',
+        'reports/report.xml',
+        'reports/project_record_report.xml',
     ],
     'assets': {
         'web.assets_backend': [

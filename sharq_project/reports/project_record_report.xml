@@ -1,0 +1,45 @@
+<odoo>
+    <template id="project_record_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <!-- <div class="page"> -->
+                <t t-call="web.external_layout">
+                    <!-- <h2 style="text-align: center">Investment Report</h2> -->
+                    <div style="text-align: center;font-size:24px;margin: 20px;">
+                        <h2>Sharq Project Report</h2>
+                    </div>
+                    <b>Project: </b><p style="font-size: 15px"><span t-esc="o.name"/></p>
+                    <div style="margin: 10px 0; font-size:12px">
+                        <p style="display: inline;margin-right: 20px;"><b>Total Investment: </b><span t-esc="o.total_investment"/></p>
+                        <p style="display: inline;margin-right: 20px;"><b>Total Expense: </b><span t-esc="o.total_expence"/></p>
+                        <p style="display: inline;margin-right: 20px;"><b>Total Sale: </b><span t-esc="o.total_sale"/></p>
+                    </div>
+                    <div class="page">
+                        <!-- Add a table with some sample data -->
+                        <table class="table table-bordered" style="font-size:9px">
+                            <thead>
+                                <tr>
+                                    <th>Investor</th>
+                                    <th>Investment</th>
+                                    <th>Expense</th>
+                                    <th>Sale</th>
+                                    <th>Profit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids" t-as="project">
+                                    <td><t t-esc="project.investor_id.name"/></td>
+                                    <td><t t-esc="project.investment"/></td>
+                                    <td><t t-esc="project.expense"/></td>
+                                    <td><t t-esc="project.sale"/></td>
+                                    <td><t t-esc="project.profit"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                <!-- </div> -->
+            </t>
+        </t>
+    </template>
+</odoo>

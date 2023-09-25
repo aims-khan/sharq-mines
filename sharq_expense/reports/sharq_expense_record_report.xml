@@ -1,0 +1,51 @@
+<odoo>
+    <template id="expense_record_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <!-- <div class="page"> -->
+                <t t-call="web.external_layout">
+                    <!-- <h2 style="text-align: center">Investment Report</h2> -->
+                    <div style="text-align: center;font-size:24px;margin: 20px;">
+                        <h2>Sharq Expense Report</h2>
+                    </div>
+                    <b>Expense: </b><p style="font-size: 15px"><span t-esc="o.name"/></p>
+                    <b>Project: </b><p style="font-size: 15px"><span t-esc="o.project_id.name"/></p>
+                    <div class="page">
+                        <!-- Add a table with some sample data -->
+                        <table class="table table-bordered" style="font-size:9px">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Total</th>
+                                    <th>Paid</th>
+                                    <th>Remainder</th>
+                                    <th>Bill Number</th>
+                                    <th>Date</th>
+                                    <th>Oil Quantity</th>
+                                    <th>Oil Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids" t-as="expense">
+                                    <td><t t-esc="expense.product_id.name"/></td>
+                                    <td><t t-esc="expense.quantity"/></td>
+                                    <td><t t-esc="expense.unit_price"/></td>
+                                    <td><t t-esc="expense.total"/></td>
+                                    <td><t t-esc="expense.payed"/></td>
+                                    <td><t t-esc="expense.reminder"/></td>
+                                    <td><t t-esc="expense.bill"/></td>
+                                    <td><t t-esc="expense.date"/></td>
+                                    <td><t t-esc="expense.oil_quantity"/></td>
+                                    <td><t t-esc="expense.oil_total"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                <!-- </div> -->
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,4 +1,18 @@
 <odoo>
+    <record id="paperformat_investment_monthly_report" model="report.paperformat">
+        <field name="name">Custom Paperformat for the Sharq Investment Mothly Report</field>
+        <field name="default" eval="False"/>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <!-- <field name="dpi">96</field> -->
+    </record>
     <record model="ir.actions.report" id="action_investment_monthly_report">
         <field name="name">Sharq Investment Mothly Report</field>
         <field name="model">investment.investment</field>
@@ -8,6 +22,7 @@
         <field name="print_report_name">'Sharq Investment Report'</field>
         <field name="binding_model_id" ref="model_investment_investment"></field>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_investment_monthly_report"/>
     </record>
  
 </odoo>

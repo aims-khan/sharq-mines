@@ -88,7 +88,7 @@ class ExpenseLine(models.Model):
     oil_total=fields.Float('Oil Total', compute='_total_oil_expance', store=True)
     bill = fields.Char('Bill Number')
     payed = fields.Integer('Paid')
-    reminder = fields.Integer('Reminder', compute="_total_reminder", store=True)
+    reminder = fields.Integer('Remainder', compute="_total_reminder", store=True)
     date = fields.Date(string="Date")
     descripation = fields.Char("Description")
 

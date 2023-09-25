@@ -30,7 +30,8 @@
         'views/sharq_product_view.xml',
         'wizard/sharq_monthly_expense_report_wizard_view.xml',
         'reports/reports.xml',
-        'reports/monthly_expense_report.xml', 
+        'reports/monthly_expense_report.xml',
+        'reports/sharq_expense_record_report.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

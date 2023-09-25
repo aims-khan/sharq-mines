@@ -1,0 +1,28 @@
+<odoo>
+    <record id="paperformat_project_record_report" model="report.paperformat">
+        <field name="name">Custom Paperformat for the Sharq Project Record Report</field>
+        <field name="default" eval="False"/>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <!-- <field name="dpi">96</field> -->
+    </record>
+    <record model="ir.actions.report" id="action_project_record_report">
+        <field name="name">Sharq Project Record Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sharq_project.project_record_report</field>
+        <field name="report_file">sharq_project.project_record_report</field>
+        <field name="print_report_name">'Sharq Project Report'</field>
+        <field name="binding_model_id" ref="model_project_project"></field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_project_record_report"/>
+    </record>
+ 
+</odoo>
