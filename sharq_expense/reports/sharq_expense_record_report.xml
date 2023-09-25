@@ -10,6 +10,9 @@
                     </div>
                     <b>Expense: </b><p style="font-size: 15px"><span t-esc="o.name"/></p>
                     <b>Project: </b><p style="font-size: 15px"><span t-esc="o.project_id.name"/></p>
+                    <div style="margin: 10px 0; font-size:12px; text-align:right">
+                        <p style="display: inline;margin-right: 20px;"><b>Total Expense: </b><span t-esc="o.amount"/></p>
+                    </div>
                     <div class="page">
                         <!-- Add a table with some sample data -->
                         <table class="table table-bordered" style="font-size:9px">
