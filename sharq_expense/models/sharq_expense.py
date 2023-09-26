@@ -9,6 +9,7 @@ class sharqExpense(models.Model):
     amount = fields.Integer('Amount', compute="_total_bill", store=True)
     reminder = fields.Integer('Remainder', compute="_total_reminder", store=True)
     payed = fields.Integer('Paid',compute="_total_payed", store=True)
+    oil_total = fields.Integer('Oil Total',compute="_total_oil", store=True)
     date = fields.Date()
     action = fields.Boolean()
     
@@ -53,17 +54,16 @@ class sharqExpense(models.Model):
         if any(self.line_ids):
             total = 0
             for line in self.line_ids:
-                total = total + line.reminder
-            self.reminder = total
-
+                total = total + line.total
+            self.amount = total
 
     @api.constrains('line_ids')
     def _total_reminder(self):
         if any(self.line_ids):
             total = 0
             for line in self.line_ids:
-                total = total + line.total
-            self.amount = total
+                total = total + line.reminder
+            self.reminder = total
 
     @api.constrains('line_ids')
     def _total_payed(self):
@@ -72,6 +72,14 @@ class sharqExpense(models.Model):
             for line in self.line_ids:
                 total = total + line.payed
             self.payed = total
+    
+    @api.constrains('line_ids')
+    def _total_oil(self):
+        if any(self.line_ids):
+            total = 0
+            for line in self.line_ids:
+                total = total + line.oil_total
+            self.oil_total = total
     
 
      

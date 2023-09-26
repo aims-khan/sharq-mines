@@ -5,6 +5,15 @@
                 <!-- <div class="page"> -->
                 <t t-call="web.external_layout">
                     <!-- <h2 style="text-align: center">Investment Report</h2> -->
+                    <t t-set="quantity" t-value="0.00"/>
+                    <t t-set="unit_price" t-value="0"/>
+                    <t t-set="oil_quantity" t-value="0.00"/>
+                    <t t-foreach="o.line_ids" t-as="line">
+                        <!-- Perform calculations -->
+                        <t t-set="quantity" t-value="quantity + line.quantity"/>
+                        <t t-set="unit_price" t-value="unit_price + line.unit_price"/>
+                        <t t-set="oil_quantity" t-value="oil_quantity + line.oil_quantity"/>
+                    </t>
                     <div style="text-align: center;font-size:24px;margin: 20px;">
                         <h2>Sharq Expense Report</h2>
                     </div>
@@ -14,6 +23,8 @@
                         <p style="display: inline;margin-right: 20px;"><b>Total Expense: </b><span t-esc="o.amount"/></p>
                         <p style="display: inline;margin-right: 20px;"><b>Total Paid: </b><span t-esc="o.payed"/></p>
                         <p style="display: inline;margin-right: 20px;"><b>Total Remainder: </b><span t-esc="o.reminder"/></p>
+                        <p style="display: inline;margin-right: 20px;"><b>Total Oil: </b><span t-esc="o.oil_total"/></p>
+                        
                     </div>
                     <div class="page">
                         <!-- Add a table with some sample data -->
@@ -44,6 +55,18 @@
                                     <td><t t-esc="expense.date"/></td>
                                     <td><t t-esc="expense.oil_quantity"/></td>
                                     <td><t t-esc="expense.oil_total"/></td>
+                                </tr>
+                                <tr style="font-weight: bold;font-size:10px">
+                                    <td>Total</td>
+                                    <td><t t-esc="quantity"/></td>
+                                    <td><t t-esc="unit_price"/></td>
+                                    <td><t t-esc="o.amount"/></td>
+                                    <td><t t-esc="o.payed"/></td>
+                                    <td><t t-esc="o.reminder"/></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><t t-esc="oil_quantity"/></td>
+                                    <td><t t-esc="o.oil_total"/></td>
                                 </tr>
                             </tbody>
                         </table>
