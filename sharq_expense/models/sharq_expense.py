@@ -7,7 +7,7 @@ class sharqExpense(models.Model):
 
     name = fields.Char()
     amount = fields.Integer('Amount', compute="_total_bill", store=True)
-    reminder = fields.Integer('Reminder', compute="_total_reminder", store=True)
+    reminder = fields.Integer('Remainder', compute="_total_reminder", store=True)
     payed = fields.Integer('Paid',compute="_total_payed", store=True)
     date = fields.Date()
     action = fields.Boolean()

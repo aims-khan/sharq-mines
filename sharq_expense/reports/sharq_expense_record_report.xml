@@ -12,6 +12,8 @@
                     <b>Project: </b><p style="font-size: 15px"><span t-esc="o.project_id.name"/></p>
                     <div style="margin: 10px 0; font-size:12px; text-align:right">
                         <p style="display: inline;margin-right: 20px;"><b>Total Expense: </b><span t-esc="o.amount"/></p>
+                        <p style="display: inline;margin-right: 20px;"><b>Total Paid: </b><span t-esc="o.payed"/></p>
+                        <p style="display: inline;margin-right: 20px;"><b>Total Remainder: </b><span t-esc="o.reminder"/></p>
                     </div>
                     <div class="page">
                         <!-- Add a table with some sample data -->
