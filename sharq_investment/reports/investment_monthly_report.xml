@@ -26,6 +26,11 @@
                                     <td><t t-esc="investment.date"/></td>
                                     <td><t t-esc="investment.amount"/></td>
                                 </tr>
+                                <tr style="font-weight: bold;font-size:10px">
+                                    <td>Total</td>
+                                    <td>----</td>
+                                    <td><t t-esc="o.amount"/></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

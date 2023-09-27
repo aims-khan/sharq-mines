@@ -16,7 +16,7 @@ class Investment(models.Model):
     _description = 'sharq_investment.investment'
     
     name = fields.Char("name")
-    amount = fields.Integer("Amount"  ,compute='_sum', store=True)
+    amount = fields.Integer("Amount", compute='_sum', store=True)
     description=fields.Text("Description")
     active = fields.Boolean(default=True)
     state = fields.Selection(
